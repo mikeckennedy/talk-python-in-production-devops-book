@@ -1,0 +1,23 @@
+services:
+
+  uv-docker-app:
+    build: ./webapp
+    container_name: uv-docker-app
+    image: uv-docker-app
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      - pythonbase
+
+  pythonbase:
+    build: ./pythonbase
+    container_name: pythonbase
+    image: pythonbase
+    depends_on:
+      - linuxbase
+
+  linuxbase:
+    build: ./linuxbase
+    container_name: linuxbase
+    image: linuxbase
+
