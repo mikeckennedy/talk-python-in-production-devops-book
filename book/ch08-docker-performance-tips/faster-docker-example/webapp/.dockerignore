@@ -1,0 +1,9 @@
+.git
+**/.git
+**/.github
+**/.fleet
+**/.vscode
+**/.idea
+**/src/logos
+**/src/docs
+**/requirements-development.txt
