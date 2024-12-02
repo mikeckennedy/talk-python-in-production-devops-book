@@ -21,7 +21,7 @@ server {
             application/xml
             application/rss+xml;
 
-        alias /static/video-collector
+        alias /static/video-collector;
         expires 365d;
     }
 
