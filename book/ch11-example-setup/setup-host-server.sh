@@ -11,6 +11,7 @@ apt install btop -y
 apt install ca-certificates -y
 apt install curl wget -y
 apt install git -y
+apt install tree -y
 
 git config --global credential.helper cache
 git config --global credential.helper 'cache --timeout=720000'
@@ -64,10 +65,32 @@ docker network create -d bridge cluster-network --subnet=174.44.0.0/16
 # Set up the infrastructure and docker files
 
 # Copy the infrastructure files (this repo)
-
 # TODO: MAKE SURE TO USE YOUR OWN FORK HERE.
 # You won't be able to test updates if you use the base one since
 # you can't change it on demand.
 git clone https://github.com/mikeckennedy/talk-python-in-production-devops-book /cluster-src/
 cd /cluster-src/
 
+
+
+
+############################################################
+# Make the static folders for data exchange between the
+# containers and git updates and data exports
+mkdir -p /cluster-data/
+cd /cluster-data/
+
+# The following folders are assuming the production settings
+# from the ./ch11-example-setup/containers/web-servers/dot-env-template.sh file
+# Remember you MUST create a .env file in that folder and copy the values from
+# dot-env-template.sh with the proper edits before anything will build / work.
+
+# Make the data folders for exchange:
+mkdir -p /cluster-data/nginx/static
+mkdir -p /cluster-data/nginx/logs
+mkdir -p /cluster-data/nginx/sites-enabled
+mkdir -p /cluster-data/nginx/usr-share-nginx
+mkdir -p /cluster-data/nginx/letsencrypt-etc
+mkdir -p /cluster-data/nginx/letsencrypt-www
+mkdir -p /cluster-data/nginx/certbot/www
+#NGINX_SITES_ENABLED=/cluster-src/containers/web-servers/nginx-base-configs
