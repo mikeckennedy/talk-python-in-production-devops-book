@@ -1,4 +1,5 @@
 # This script is meant as a guide to setup a new machine to run our docker cluster.
+# RUN THIS ONLY ONCE.
 
 ############################################################
 # Setup the server itself

@@ -9,7 +9,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 RUN apt-get upgrade -y
 
-RUN apt-get -y install locales git curl wget
+RUN apt-get -y install locales git
+RUN apt-get -y install locales curl
+RUN apt-get -y install locales wget
 RUN locale-gen en_US.UTF-8
 
 RUN apt-get install -y gcc

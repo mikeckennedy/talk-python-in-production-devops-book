@@ -6,28 +6,29 @@ ENV PATH=/venv/bin:$PATH
 ENV PATH=/root/.cargo/bin:$PATH
 ENV PATH="/root/.local/bin/:$PATH"
 
-# Install Rust/Cargo
+# Install Rust/Cargo for local builds of Rust-based Python packages
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 # Install uv
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# set up a virtual env to use for whatever app is destined for this container.
-# RUN uv venv --python 3.13.0 --seed /venv
-RUN uv venv --python 3.13.0 /venv
+# Set up a virtual env to use for whatever app is destined for this container.
+# RUN uv venv --python 3.13 --seed /venv
+RUN uv venv --python 3.13 /venv
 
+# Have the venv activate itself if we login via docker run/exec:
 RUN echo "\nsource /venv/bin/activate\n" >> /root/.zshrc
 RUN uv --version
 
 
 # Install some handy utilities if you want them for debugging within the container
-# RUN uv pip install httpie glances pls
+RUN --mount=type=cache,target=/root/.cache uv pip install httpie pls
 
-# Install some of the common packages that (many) don't change often so later images build faster.
+# Install some of the common packages that may not change often so later images build faster.
+# In practice this is a much larger set of packages (e.g. over 200 at Talk Python).
 
 # Main dependencies
 RUN --mount=type=cache,target=/root/.cache uv pip install --upgrade flask pydantic
-
 
 # Base web servers for a minimum version
 RUN --mount=type=cache,target=/root/.cache uv pip install --upgrade granian[pname]
