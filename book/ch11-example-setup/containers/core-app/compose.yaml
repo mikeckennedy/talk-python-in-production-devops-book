@@ -1,0 +1,32 @@
+services:
+
+  video-collector:
+    image: video-collector
+    container_name: video-collector
+    # platform: "linux/x86_64"
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5000:5000"
+    volumes:
+      - "${APP_LOGS}:/logs"
+    build: video-collector-docker
+    deploy:
+      resources:
+        limits:
+          # noinspection ComposeUnknownValues
+          memory: 1G
+#    healthcheck:
+#      test: nohup curl -A "Docker Health Agent (via curl)" --fail http://localhost:5000?app=docker-compose-healthcheck || exit 1
+#      interval: 60s
+#      retries: 5
+#      start_period: 25s
+#      timeout: 30s
+    networks:
+      cluster-net:
+        ipv4_address: 174.44.0.100
+
+
+networks:
+  cluster-network:
+    name: cluster-network
+    external: true

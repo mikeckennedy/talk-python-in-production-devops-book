@@ -93,4 +93,5 @@ mkdir -p /cluster-data/nginx/usr-share-nginx
 mkdir -p /cluster-data/nginx/letsencrypt-etc
 mkdir -p /cluster-data/nginx/letsencrypt-www
 mkdir -p /cluster-data/nginx/certbot/www
-#NGINX_SITES_ENABLED=/cluster-src/containers/web-servers/nginx-base-configs
+
+mkdir -p /cluster-data/logs/video-collector
