@@ -7,17 +7,17 @@ services:
     ports:
       - "127.0.0.1:8080:8080"
     depends_on:
-      - pythonbase
+      - pythonbase-faster
 
-  pythonbase:
+  pythonbase-faster:
     build: ./pythonbase
-    container_name: pythonbase
-    image: pythonbase
+    container_name: pythonbase-faster
+    image: pythonbase-faster
     depends_on:
-      - linuxbase
+      - linuxbase-faster
 
-  linuxbase:
+  linuxbase-faster:
     build: ./linuxbase
-    container_name: linuxbase
-    image: linuxbase
+    container_name: linuxbase-faster
+    image: linuxbase-faster
 

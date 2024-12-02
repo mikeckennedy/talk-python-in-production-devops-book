@@ -5,12 +5,12 @@ RUN mkdir /app
 
 COPY src/requirements.txt /app
 WORKDIR "/app"
-RUN uv pip install -r requirements.txt
+RUN --mount=type=cache,target=/root/.cache uv pip install -r requirements.txt
 
 COPY src/ /app
 
 # Make sure we have the latest web servers if the bases are cached.
-RUN uv pip install --upgrade granian[pname]
+RUN --mount=type=cache,target=/root/.cache uv pip install --upgrade granian[pname]
 
 # Expose the port that Granián will use
 EXPOSE 8080

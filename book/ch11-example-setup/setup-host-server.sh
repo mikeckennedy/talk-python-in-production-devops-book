@@ -65,7 +65,7 @@ docker network create -d bridge cluster-network --subnet=174.44.0.0/16
 # Set up the infrastructure and docker files
 
 # Copy the infrastructure files (this repo)
-# TODO: MAKE SURE TO USE YOUR OWN FORK HERE.
+# TODO: MAKE SURE TO USE YOUR OWN FORK OF THE REPO HERE.
 # You won't be able to test updates if you use the base one since
 # you can't change it on demand.
 git clone https://github.com/mikeckennedy/talk-python-in-production-devops-book /cluster-src/
