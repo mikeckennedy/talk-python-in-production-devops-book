@@ -98,3 +98,4 @@ mkdir -p /cluster-data/logs/video-collector
 
 
 cp /cluster-src/book/ch11-example-setup/containers/web-servers/nginx-base-configs/video-collector.nginx /cluster-data/nginx/sites-enabled
+cp -r /cluster-src/book/ch11-example-setup/containers/core-app/video-collector-docker/src/htmx-python-course/code/ch7_infinite_scroll/ch7_final_video_collector/static /cluster-data/nginx/static/video-collector
