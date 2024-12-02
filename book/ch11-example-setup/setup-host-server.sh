@@ -71,6 +71,12 @@ docker network create -d bridge cluster-network --subnet=174.44.0.0/16
 git clone https://github.com/mikeckennedy/talk-python-in-production-devops-book /cluster-src/
 cd /cluster-src/
 
+# Copy the app src
+# TODO: MAKE SURE TO USE YOUR OWN FORK OF THE REPO github.com/talkpython/htmx-python-course HERE.
+# You won't be able to test updates if you use the base one since
+# you can't change it on demand.
+cd /cluster-src/book/ch11-example-setup/containers/core-app/video-collector-docker/src
+git clone https://github.com/talkpython/htmx-python-course
 
 
 
@@ -97,5 +103,23 @@ mkdir -p /cluster-data/nginx/certbot/www
 mkdir -p /cluster-data/logs/video-collector
 
 
+
+
+
+
+# Add to /etc/hosts
+127.0.0.1 video-collector-test.com
+
 cp /cluster-src/book/ch11-example-setup/containers/web-servers/nginx-base-configs/video-collector.nginx /cluster-data/nginx/sites-enabled
 cp -r /cluster-src/book/ch11-example-setup/containers/core-app/video-collector-docker/src/htmx-python-course/code/ch7_infinite_scroll/ch7_final_video_collector/static /cluster-data/nginx/static/video-collector
+
+
+############################################################
+# Run docker compose cluster as systemd service
+cd /cluster-src/book/ch11-example-setup/containers/core-app
+curl -fsSL https://techoverflow.net/scripts/create-docker-compose-service.sh | sudo bash /dev/stdin
+
+cd /cluster-src/book/ch11-example-setup/containers/web-servers
+curl -fsSL https://techoverflow.net/scripts/create-docker-compose-service.sh | sudo bash /dev/stdin
+
+

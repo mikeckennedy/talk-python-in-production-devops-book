@@ -1,0 +1,5 @@
+
+# Add these to the end of your rc file:
+
+alias http='docker run -it --rm --net=host clue/httpie'
+alias glances='docker run --rm --name glances -v /var/run/docker.sock:/var/run/docker.sock:ro -v /run/user/1000/podman/podman.sock:/run/user/1000/podman/podman.sock:ro --pid host --network host -it docker.io/nicolargo/glances'
