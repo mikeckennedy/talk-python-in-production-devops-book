@@ -9,8 +9,8 @@ ENV PATH="/root/.local/bin/:$PATH"
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # set up a virtual env to use for whatever app is destined for this container.
-# RUN uv venv --python 3.12.5 --seed /venv
-RUN uv venv --python 3.12.6 /venv
+# RUN uv venv --python 3.13.0 --seed /venv
+RUN uv venv --python 3.13.0 /venv
 
 RUN echo "\nsource /venv/bin/activate\n" >> /root/.zshrc
 RUN uv --version
@@ -30,4 +30,3 @@ RUN uv pip install --upgrade granian[pname]
 
 RUN echo "We're good:"
 RUN /venv/bin/python --version
-

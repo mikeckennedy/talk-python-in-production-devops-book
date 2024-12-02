@@ -14,6 +14,7 @@ RUN apt-get -y install locales git curl wget
 RUN locale-gen en_US.UTF-8
 
 RUN apt-get install -y gcc
+RUN apt-get install -y clang
 RUN apt-get install -y build-essential
 RUN apt-get install -y openssl
 
