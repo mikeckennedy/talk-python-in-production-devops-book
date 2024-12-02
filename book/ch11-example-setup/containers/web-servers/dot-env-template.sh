@@ -1,0 +1,23 @@
+# Template file for nginx set up.
+# Copy to local .env file with updated values
+
+# Here are some options:
+
+# Locally for development:
+NGINX_STATIC=./cluster-data/nginx/static
+NGINX_LOGS=./cluster-data/nginx/logs
+NGINX_SITES_ENABLED=./cluster-data/nginx/sites-enabled
+NGINX_USR_SHARE_NGINX=./cluster-data/nginx/usr-share-nginx
+NGINX_LETS_ENCRYPT_ETC=./cluster-data/nginx/letsencrypt-etc
+NGINX_LETSENCRYPT_WWW=./cluster-data/nginx/letsencrypt-www
+CERTBOT_WWW=./cluster-data/nginx/certbot/www
+
+# Some candidate production settings
+NGINX_STATIC=/cluster-data/nginx/static
+NGINX_LOGS=/cluster-data/nginx/logs
+NGINX_SITES_ENABLED=/cluster-data/nginx/sites-enabled
+NGINX_SITES_ENABLED=/cluster-src/containers/web-servers/nginx-base-configs
+NGINX_USR_SHARE_NGINX=/cluster-data/nginx/usr-share-nginx
+NGINX_LETS_ENCRYPT_ETC=/cluster-data/nginx/letsencrypt-etc
+NGINX_LETSENCRYPT_WWW=/cluster-data/nginx/letsencrypt-www
+CERTBOT_WWW=/cluster-data/nginx/certbot/www

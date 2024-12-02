@@ -1,0 +1,51 @@
+# Run as systemd service:
+# curl -fsSL https://techoverflow.net/scripts/create-docker-compose-service.sh | sudo bash /dev/stdin
+#
+services:
+
+  nginx:
+    image: nginx:latest
+    # platform: "linux/x86_64"
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "./local-nginx.conf:/etc/nginx/nginx.conf"
+      - "${NGINX_SITES_ENABLED}:/etc/nginx/sites-enabled"
+      - "${NGINX_LOGS}:/var/log/nginx/"
+      - "${NGINX_LETSENCRYPT_WWW}:/var/www/letsencrypt"
+      - "${NGINX_USR_SHARE_NGINX}:/usr/share/nginx/"
+      - "${NGINX_STATIC}:/apps/static/"
+      - "${CERTBOT_WWW}:/var/www/certbot/"
+      - "${NGINX_LETS_ENCRYPT_ETC}:/etc/letsencrypt/"
+    healthcheck:
+      test: service nginx status || exit 1
+      interval: 30s
+      retries: 5
+      start_period: 10s
+      timeout: 1s
+    deploy:
+      resources:
+        limits:
+          # noinspection ComposeUnknownValues
+          memory: 1G
+    networks:
+      cluster-network:
+
+  certbot:
+      image: certbot/certbot:latest
+      container_name: certbot
+      # platform: "linux/x86_64"
+      volumes:
+        - "${CERTBOT_WWW}:/var/www/certbot/"
+        - "${NGINX_LETS_ENCRYPT_ETC}:/etc/letsencrypt/:rw"
+      networks:
+        cluster-network:
+
+
+networks:
+  cluster-network:
+    name: cluster-network
+    external: true
