@@ -1,0 +1,60 @@
+server {
+    server_name video-collector-test.talkpython.com;
+    listen 80;
+    charset utf-8;
+    client_max_body_size 1M;
+    server_tokens off;
+
+    location /static {
+        gzip on;
+
+        gzip_comp_level 6;
+        gzip_min_length 1100;
+        gzip_buffers 16 8k;
+        gzip_proxied any;
+        gzip_types
+            text/plain
+            text/xml
+            text/css
+            application/javascript
+            application/json
+            application/xml
+            application/rss+xml;
+
+        alias /app/static;
+        expires 365d;
+    }
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
+
+    location / {
+        try_files $uri @yourapplication;
+    }
+    location @yourapplication {
+        gzip on;
+        gzip_disable "msie6";
+
+        gzip_comp_level 6;
+        gzip_min_length 1100;
+        gzip_buffers    8 256k;
+        gzip_proxied any;
+        gzip_types
+            text/plain
+            text/xml
+            text/css
+            application/javascript
+            application/json
+            application/xml
+            application/rss+xml;
+
+        proxy_pass http://174.44.0.100:5000;
+        include uwsgi_params;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Protocol $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $host;
+    }
+}

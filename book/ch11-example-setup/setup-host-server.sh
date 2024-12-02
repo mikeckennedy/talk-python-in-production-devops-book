@@ -95,3 +95,6 @@ mkdir -p /cluster-data/nginx/letsencrypt-www
 mkdir -p /cluster-data/nginx/certbot/www
 
 mkdir -p /cluster-data/logs/video-collector
+
+
+cp /cluster-src/book/ch11-example-setup/containers/web-servers/nginx-base-configs/video-collector.nginx /cluster-data/nginx/sites-enabled
