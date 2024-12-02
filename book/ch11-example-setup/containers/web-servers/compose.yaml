@@ -17,7 +17,7 @@ services:
       - "${NGINX_LOGS}:/var/log/nginx/"
       - "${NGINX_LETSENCRYPT_WWW}:/var/www/letsencrypt"
       - "${NGINX_USR_SHARE_NGINX}:/usr/share/nginx/"
-      - "${NGINX_STATIC}:/app/static/"
+      - "${NGINX_STATIC}:/static/"
       - "${CERTBOT_WWW}:/var/www/certbot/"
       - "${NGINX_LETS_ENCRYPT_ETC}:/etc/letsencrypt/"
     healthcheck:
