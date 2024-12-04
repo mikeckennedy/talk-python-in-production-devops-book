@@ -1,3 +1,5 @@
+#! /usr/bin/bash
+
 # ################ Set up environment for shared vars #####################
 set -eu pipefail # Enable strict error handling
 # Script's working directory
