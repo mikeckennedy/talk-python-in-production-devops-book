@@ -1,5 +1,5 @@
 # ################ Set up environment for shared vars #####################
-set -euo pipefail # Enable strict error handling
+set -eu pipefail # Enable strict error handling
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)" # Script's working directory
 RELATIVE_PATH="${SCRIPT_DIR}/../../.."
 REPO_PATH=$(realpath "$RELATIVE_PATH") # Repo cloned here
