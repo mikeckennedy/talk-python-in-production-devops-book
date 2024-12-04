@@ -4,6 +4,7 @@ echo "Building containers"
 # ################ Set up environment for shared vars #####################
 set -eu pipefail # Enable strict error handling
 # Script's working directory
+echo "BASE SOURCE: ${BASH_SOURCE}"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 echo "SCRIPT_DIR ${SCRIPT_DIR}"
 RELATIVE_PATH="${SCRIPT_DIR}/../../.."
