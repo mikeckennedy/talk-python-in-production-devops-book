@@ -80,6 +80,10 @@ cd /cluster-src/book/ch11-example-setup/containers/core-app/video-collector-dock
 git clone https://github.com/talkpython/htmx-python-course
 
 
+# ###############
+# Make scripts runnable
+chmod +x /cluster-src/book/ch11-example-setup/scripts/*.sh
+
 
 ############################################################
 # Make the static folders for data exchange between the
@@ -122,5 +126,4 @@ curl -fsSL https://techoverflow.net/scripts/create-docker-compose-service.sh | s
 
 cd /cluster-src/book/ch11-example-setup/containers/web-servers
 curl -fsSL https://techoverflow.net/scripts/create-docker-compose-service.sh | sudo bash /dev/stdin
-
 
