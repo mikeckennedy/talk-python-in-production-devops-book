@@ -1,4 +1,4 @@
-
+#! /usr/bin/bash
 echo "Building containers"
 
 # ################ Set up environment for shared vars #####################
