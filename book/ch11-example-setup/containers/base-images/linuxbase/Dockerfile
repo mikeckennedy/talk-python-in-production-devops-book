@@ -17,7 +17,7 @@ RUN locale-gen en_US.UTF-8
 RUN apt-get -y install git
 RUN apt-get install -y gcc
 RUN apt-get install -y clang
-RUN apt-get install -y build-essential
+# RUN apt-get install -y build-essential
 RUN apt-get install -y openssl
 
 # Install Oh My ZSH: Uses "robbyrussell" theme (original Oh My Zsh theme), with no plugins
