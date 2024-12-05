@@ -31,7 +31,7 @@ talkpython.quart_app:app \
 
 ### Code block 05-03 - Docker
 
-```dockerfile
+```dockerfile copy
 ENTRYPOINT [  \
   "/venv/bin/granian",\
   "talkpython.quart_app:app", \
@@ -57,13 +57,13 @@ ENTRYPOINT [  \
 
 ### Code block 06-01 - Linux Shell
 
-```bash
+```bash copy
 docker volume create umami-volume
 ```
 
 ### Code block 06-02 - Docker
 
-```dockerfile
+```dockerfile copy
 umami_db:
     # ...
     volumes:
@@ -77,14 +77,14 @@ volumes:
 
 ### Code block 06-03 - Linux Shell
 
-```bash
+```bash copy
 # In the folder with the docker-compose.yml file:
 docker compose up
 ```
 
 ### Code block 06-04 - Docker
 
-```dockerfile
+```dockerfile copy
 services:
   uptime-kuma:
     image: louislam/uptime-kuma:1
@@ -97,13 +97,13 @@ services:
 
 ### Code block 06-05 - Linux Shell
 
-```bash
+```bash copy
 docker volume create kuma-volume
 ```
 
 ### Code block 06-06 - Docker
 
-```dockerfile
+```dockerfile copy
 services:
   uptime-kuma:
     image: louislam/uptime-kuma:1
@@ -127,20 +127,20 @@ volumes:
 
 ### Code block 07-01 - Linux Shell
 
-```bash
+```bash copy
 apt install btop
 ```
 
 ### Code block 07-02 - Linux Shell
 
-```bash
+```bash copy
 docker pull nicolargo/glances:latest-full
 docker run --rm -e TZ="${TZ}" -v /var/run/docker.sock:/var/run/docker.sock:ro -v /run/user/1000/podman/podman.sock:/run/user/1000/podman/podman.sock:ro --pid host --network host -it nicolargo/glances:latest-full
 ```
 
 ### Code block 07-03 - Linux Shell
 
-```bash
+```bash copy
 # in .zshrc / .bashrc
 alias update_glances="docker pull nicolargo/glances:latest-full"
 alias run_glances="docker run --rm -e TZ="${TZ}" -v /var/run/docker.sock:/var/run/docker.sock:ro -v /run/user/1000/podman/podman.sock:/run/user/1000/podman/podman.sock:ro --pid host --network host -it nicolargo/glances:latest-full"
@@ -150,38 +150,38 @@ alias glances="update_glances && run_glances"
 
 ### Code block 07-04 - Linux Shell
 
-```bash
+```bash copy
 uv tool install dockerclustermon
 ```
 
 ### Code block 07-05 - Linux Shell
 
-```bash
+```bash copy
 pipx install dockerclustermon
 ```
 
 ### Code block 07-06 - Linux Shell
 
-```bash
+```bash copy
 dockerstatus servername
 ```
 
 ### Code block 07-07 - Linux Shell
 
-```bash
+```bash copy
 docker exec -it nginx bash
 ```
 
 ### Code block 07-08 - Linux Shell
 
-```bash
+```bash copy
 docker exec -it talkpython zsh
 (venv) ➜  /app
 ```
 
 ### Code block 07-09 - Linux Shell
 
-```bash
+```bash copy
 export ZSH="/root/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 plugins=()
@@ -192,14 +192,14 @@ source /venv/bin/activate
 
 ### Code block 07-10 - Docker
 
-```dockerfile
+```dockerfile copy
 # Uses "robbyrussell" theme (original Oh My Zsh theme), with no plugins
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.2.0/zsh-in-docker.sh)" -- -t robbyrussell
 ```
 
 ### Code block 07-11 - Docker
 
-```dockerfile
+```dockerfile copy
 services:
   talkpython:
     image: talkpython
@@ -211,7 +211,7 @@ services:
 
 ### Code block 07-12 - Linux Shell
 
-```bash
+```bash copy
 tail -n 500 -f /cluster/logs/talkpython/request-log.log
 ```
 
@@ -222,7 +222,7 @@ tail -n 500 -f /cluster/logs/talkpython/request-log.log
 
 ### Code block 08-01 - Docker
 
-```dockerfile
+```dockerfile copy
 FROM ubuntu:latest
 
 RUN mkdir /app
@@ -236,7 +236,7 @@ ENTRYPOINT [ ... your startup command here ... ]
 
 ### Code block 08-02 - Docker
 
-```dockerfile
+```dockerfile copy
 FROM ubuntu:latest
 
 # Move ahead
@@ -252,7 +252,7 @@ ENTRYPOINT [ ... your startup command here ... ]
 
 ### Code block 08-03 - Docker
 
-```dockerfile
+```dockerfile copy
 FROM ubuntu:latest
 
 # Move ahead
@@ -280,7 +280,7 @@ ENTRYPOINT [ ... your startup command here ... ]
 
 ### Code block 08-04 - Docker
 
-```dockerfile
+```dockerfile copy
 # ############ FOCUS HERE ##############
 ...
 
@@ -297,7 +297,7 @@ COPY ./src/ /app
 
 ### Code block 08-05 - Docker
 
-```dockerfile
+```dockerfile copy
 # ############ FOCUS HERE ##############
 ...
 
@@ -314,7 +314,7 @@ COPY ./src/ /app
 
 ### Code block 08-06 - Docker
 
-```dockerfile
+```dockerfile copy
 FROM ubuntu:latest
 
 # ...
@@ -344,7 +344,7 @@ COPY ./src/ /app
 
 ### Code block 08-07 - Docker
 
-```dockerfile
+```dockerfile copy
 FROM ubuntu:latest
 
 # ...
@@ -357,7 +357,7 @@ RUN --mount=type=cache,target=/root/.cache uv pip install -r requirements.txt
 
 ### Code block 08-08 - Docker
 
-```dockerfile
+```dockerfile copy
 # .dockerignore - place next to Dockerfile
 .git
 **/.git
@@ -460,13 +460,13 @@ networks:
 
 ### Code block 09-03 - Linux Shell
 
-```bash
+```bash copy
 dc run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d talkpython.fm
 ```
 
 ### Code block 09-04 - NGINX
 
-```nginx
+```nginx copy
 server {
     server_name talkpython.fm;
     charset utf-8;
@@ -529,13 +529,13 @@ server {
 
 ### Code block 09-05 - Linux Shell
 
-```bash
+```bash copy
 docker compose run --rm certbot renew --webroot --webroot-path /var/www/certbot/
 ```
 
 ### Code block 09-06 - Linux Shell
 
-```bash
+```bash copy
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -555,19 +555,19 @@ The following certificates are not due for renewal yet:
 
 ### Code block 10-01 - HTML
 
-```html
+```html copy
 https://cdn-podcast.talkpython.fm/static/css/site.css?cache_id=9b9f84
 ```
 
 ### Code block 10-02 - HTML
 
-```html
+```html copy
 /static/css/site.css?cache_id=9b9f84
 ```
 
 ### Code block 10-03 - HTML
 
-```html
+```html copy
 https://download-cdn.talkpython.fm/podcasts/talkpython/487-building-rust-extensions-for-python.mp3
 ```
 
@@ -578,7 +578,7 @@ https://download-cdn.talkpython.fm/podcasts/talkpython/487-building-rust-extensi
 
 ### Code block 13-01 - Python
 
-```python
+```python copy
 import quart
 # ...
 
@@ -604,7 +604,7 @@ def register_blueprints(app: quart.Quart):
 
 ### Code block 13-02 - Python
 
-```python
+```python copy
 @app.get('/catalog/item/{item_id}')
 @chameleon_flask.template('catalog/item.pt')
 async def item(item_id: int):
@@ -617,7 +617,7 @@ async def item(item_id: int):
 
 ### Code block 13-03 - Python
 
-```python
+```python copy
 @episodes_blueprint.get('/<int:show_id>')
 async def show_by_number(show_id: int):
     vm = ShowEpisodeViewMode(show_id, -1)
