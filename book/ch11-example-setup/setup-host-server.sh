@@ -1,8 +1,22 @@
 # This script is meant as a guide to setup a new machine to run our docker cluster.
 # RUN THIS ONLY ONCE.
 
+
 ############################################################
-# Setup the server itself
+# This script is not meant to be run directly.
+# Take it piece by piece and execute the blocks
+echo ""
+echo "Error: This script is not meant to be run directly."
+echo "Take it piece by piece and execute the blocks."
+echo "For example, there are sections where you need to fill out info"
+echo "like your name and email before running that block of code."
+echo "Plus running each block will give you a chance to understand it better."
+echo ""
+exit 0
+
+
+############################################################
+# Setup the server itself including ohmyzsh
 apt-get update
 apt-get upgrade -y
 apt-get install zsh -y
@@ -17,9 +31,9 @@ apt install tree -y
 git config --global credential.helper cache
 git config --global credential.helper 'cache --timeout=720000'
 
+# TODO: Enter your name and email for git in the placeholders.
 git config --global user.email "YOUR_EMAIL"
 git config --global user.name "YOUR_NAME"
-
 
 
 
@@ -44,11 +58,14 @@ sudo apt-get update
 # To install the latest version of Docker
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
-# Change Docker data file to mounted volume if wanted:
-# see https://stackoverflow.com/questions/36014554/how-to-change-the-default-location-for-docker-create-volume-command
-# Before you set up anything, be sure to change the docker working data to the mounted volume.
+# Change Docker data file to mounted volume if wanted, this will allow you to mount a
+# separate volume much bigger than your hard drive and keep the docker working volumes and images
+# there. This is especially useful if you have very large DB files in a persistent Docker volume.
+# See https://stackoverflow.com/questions/36014554/how-to-change-the-default-location-for-docker-create-volume-command
+# Before you run anything related to Docker, be sure to change the docker working data to
+# the mounted volume if you intend to do that.
 
-# Test Docker
+# Test Docker by running hello-world:
 docker run hello-world
 
 
@@ -57,25 +74,23 @@ docker run hello-world
 ############################################################
 # Create the persistent docker elements (network, disks, etc)
 docker network create -d bridge cluster-network --subnet=174.44.0.0/16
-
-# TODO: docker volume create NAME
+# Example: "docker volume create NAME" if you need a persistent volume,
+# our example doesn't use one.
 
 
 
 ############################################################
-# Set up the infrastructure and docker files
+# Set up the infrastructure (this project) and docker files
 
-# Copy the infrastructure files (this repo)
-# TODO: MAKE SURE TO USE YOUR OWN FORK OF THE REPO HERE.
-# You won't be able to test updates if you use the base one since
-# you can't change it on demand.
+# Download the infrastructure files (this repo)
+# TODO: MAKE SURE TO USE YOUR OWN FORK OF THE REPO BELOW.
+# You won't be able to test updates if you use the base one since you can't change it on demand.
 git clone https://github.com/mikeckennedy/talk-python-in-production-devops-book /cluster-src/
 cd /cluster-src/
 
 # Copy the app src
-# TODO: MAKE SURE TO USE YOUR OWN FORK OF THE REPO github.com/talkpython/htmx-python-course HERE.
-# You won't be able to test updates if you use the base one since
-# you can't change it on demand.
+# TODO: MAKE SURE TO USE YOUR OWN FORK OF THE REPO https://github.com/talkpython/htmx-python-course BELOW.
+# You won't be able to test updates if you use the base one since you can't change it on demand.
 cd /cluster-src/book/ch11-example-setup/containers/core-app/video-collector-docker/src
 git clone https://github.com/talkpython/htmx-python-course
 
@@ -87,14 +102,14 @@ chmod +x /cluster-src/book/ch11-example-setup/scripts/*.sh
 
 ############################################################
 # Make the static folders for data exchange between the
-# containers and git updates and data exports
+# containers, git updates, and data exports
 mkdir -p /cluster-data/
 cd /cluster-data/
 
 # The following folders are assuming the production settings
 # from the ./ch11-example-setup/containers/web-servers/dot-env-template.sh file
-# Remember you MUST create a .env file in that folder and copy the values from
-# dot-env-template.sh with the proper edits before anything will build / work.
+# You MUST create a .env file in that folder and copy the values from
+# dot-env-template.sh with the proper adjustments before anything will build / work.
 
 # Make the data folders for exchange:
 mkdir -p /cluster-data/nginx/static
@@ -107,17 +122,13 @@ mkdir -p /cluster-data/nginx/certbot/www
 
 mkdir -p /cluster-data/logs/video-collector
 
-
-
-
-
-
-# Add to /etc/hosts
-127.0.0.1 video-collector-test.com
-
+# Copy the NGINX config files into NGINX's config folder we mapped into Docker:
 cp /cluster-src/book/ch11-example-setup/containers/web-servers/nginx-base-configs/video-collector.nginx /cluster-data/nginx/sites-enabled
+# Copy the static files from our example app into the static folder we're mapping to NGINX (in the compose.yaml later)
 cp -r /cluster-src/book/ch11-example-setup/containers/core-app/video-collector-docker/src/htmx-python-course/code/ch7_infinite_scroll/ch7_final_video_collector/static /cluster-data/nginx/static/video-collector
 
+# Add to /etc/hosts on the host machine (so we can test requests against the domain)
+127.0.0.1 video-collector-test.com
 
 ############################################################
 # Run docker compose cluster as systemd service
@@ -126,4 +137,3 @@ curl -fsSL https://techoverflow.net/scripts/create-docker-compose-service.sh | s
 
 cd /cluster-src/book/ch11-example-setup/containers/web-servers
 curl -fsSL https://techoverflow.net/scripts/create-docker-compose-service.sh | sudo bash /dev/stdin
-

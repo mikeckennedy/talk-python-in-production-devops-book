@@ -1,4 +1,3 @@
-
 # Add these to the end of your rc file:
 
 alias http='docker run -it --rm --net=host clue/httpie'
