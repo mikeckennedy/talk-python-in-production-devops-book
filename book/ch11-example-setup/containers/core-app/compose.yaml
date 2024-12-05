@@ -6,7 +6,7 @@ services:
     platform: "linux/x86_64"
     restart: unless-stopped
     ports:
-      - "127.0.0.1:5000:5000"
+      - "127.0.0.1:15000:15000"
     volumes:
       - "${APP_LOGS}:/logs"
     build: video-collector-docker
@@ -16,7 +16,7 @@ services:
           # noinspection ComposeUnknownValues
           memory: 1G
 #    healthcheck:
-#      test: nohup curl -A "Docker Health Agent (via curl)" --fail http://localhost:5000?app=docker-compose-healthcheck || exit 1
+#      test: nohup curl -A "Docker Health Agent (via curl)" --fail http://localhost:15000?app=docker-compose-healthcheck || exit 1
 #      interval: 60s
 #      retries: 5
 #      start_period: 25s

@@ -11,14 +11,14 @@ COPY src/htmx-python-course/code/ch7_infinite_scroll/ch7_final_video_collector /
 RUN --mount=type=cache,target=/root/.cache uv pip install --upgrade granian[pname]
 
 # Expose the port that Granián will use
-EXPOSE 5000
+EXPOSE 15000
 
 # Set the command to run when the container starts (Granián)
 ENTRYPOINT [  \
     "/venv/bin/granian",\
     "app:app", \
     "--host","0.0.0.0", \
-    "--port","5000", \
+    "--port","15000", \
     "--interface","wsgi", \
     "--no-ws", \
     "--workers","2", \

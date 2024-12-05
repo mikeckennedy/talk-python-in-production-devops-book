@@ -1,5 +1,5 @@
 server {
-    server_name video-collector-test.talkpython.com;
+    server_name video-collector-test.com;
     listen 80;
     charset utf-8;
     client_max_body_size 1M;
@@ -49,7 +49,7 @@ server {
             application/xml
             application/rss+xml;
 
-        proxy_pass http://174.44.0.100:5000;
+        proxy_pass http://174.44.0.100:15000;
         include uwsgi_params;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
