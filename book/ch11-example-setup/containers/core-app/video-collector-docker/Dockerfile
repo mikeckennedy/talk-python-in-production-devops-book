@@ -3,12 +3,13 @@ FROM python-example-base:latest
 WORKDIR "/app"
 
 COPY ./src/htmx-python-course/code/ch7_infinite_scroll/ch7_final_video_collector/requirements.txt /app
+RUN uv self update
 RUN --mount=type=cache,target=/root/.cache uv pip install -r requirements.txt
 
 COPY src/htmx-python-course/code/ch7_infinite_scroll/ch7_final_video_collector /app
 
 # Make sure we have the latest web server if the bases are cached.
-RUN --mount=type=cache,target=/root/.cache uv pip install --upgrade granian[pname]
+RUN --mount=type=cache,target=/root/.cache uv pip install --upgrade "granian[pname]"
 
 # Expose the port that Granián will use
 EXPOSE 15000
