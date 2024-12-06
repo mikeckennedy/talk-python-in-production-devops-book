@@ -36,7 +36,21 @@ git config --global user.email "YOUR_EMAIL"
 git config --global user.name "YOUR_NAME"
 
 
+# install uv for local tool management
+curl -LsSf https://astral.sh/uv/install.sh | sh
+# install pls via uv:
+uv tool install pls
 
+# Add the following lines to your ~/.zshrc file:
+alias http='docker run -it --rm --net=host clue/httpie'
+alias glances='docker run --rm --name glances -v /var/run/docker.sock:/var/run/docker.sock:ro -v /run/user/1000/podman/podman.sock:/run/user/1000/podman/podman.sock:ro --pid host --network host -it docker.io/nicolargo/glances'
+alias deploy="/cluster-src/book/ch11-example-setup/scripts/deploy.sh"
+alias dc="docker compose"
+alias lls="/bin/ls -G"
+alias ls="pls"
+
+# Then reload the config:
+source ~/.zshrc
 
 ############################################################
 # Setup docker on the server.
