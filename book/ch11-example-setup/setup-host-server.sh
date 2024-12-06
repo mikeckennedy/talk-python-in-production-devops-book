@@ -100,7 +100,7 @@ docker network create -d bridge cluster-network --subnet=174.44.0.0/16
 # TODO: MAKE SURE TO USE YOUR OWN FORK OF THE REPO BELOW.
 # You won't be able to test updates if you use the base one since you can't change it on demand.
 git clone https://github.com/mikeckennedy/talk-python-in-production-devops-book /cluster-src/
-cd /cluster-src/
+
 
 # Copy the app src
 # TODO: MAKE SURE TO USE YOUR OWN FORK OF THE REPO https://github.com/talkpython/htmx-python-course BELOW.
