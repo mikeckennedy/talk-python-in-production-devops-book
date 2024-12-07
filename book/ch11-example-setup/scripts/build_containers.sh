@@ -17,18 +17,22 @@ REPO_PATH=$(realpath "$RELATIVE_PATH")
 echo "Building base images"
 cd ${REPO_PATH}/book/ch11-example-setup/containers/base-images
 docker compose build
-docker compose up -d
 echo "base images done"
-
 
 echo "Build core app"
 cd ${REPO_PATH}/book/ch11-example-setup/containers/core-app
 docker compose build
-docker compose up -d
 echo "core app done"
 
 echo "Building nginx server"
 cd ${REPO_PATH}/book/ch11-example-setup/containers/web-servers
 docker compose build
-docker compose up -d
 echo "nginx server done"
+
+
+echo "Restart containers (if needed)"
+cd ${REPO_PATH}/book/ch11-example-setup/containers/core-app
+docker compose up -d
+cd ${REPO_PATH}/book/ch11-example-setup/containers/web-servers
+docker compose up -d
+echo "restarts done."
