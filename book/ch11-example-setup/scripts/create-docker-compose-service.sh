@@ -19,11 +19,11 @@ Group=docker
 TimeoutStopSec=15
 WorkingDirectory=$(pwd)
 # Shutdown container (if running) when unit is started
-ExecStartPre=$(which docker-compose) -f docker-compose.yml down
+# ExecStartPre=docker compose down
 # Start container when unit is started
-ExecStart=$(which docker-compose) -f docker-compose.yml up
+ExecStart=docker compose up
 # Stop container when unit is stopped
-ExecStop=$(which docker-compose) -f docker-compose.yml down
+ExecStop=docker compose down
 
 [Install]
 WantedBy=multi-user.target
