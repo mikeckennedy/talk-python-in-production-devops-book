@@ -4,7 +4,7 @@
 # Licensed as CC0 1.0 Universal
 SERVICENAME=$(basename $(pwd))
 
-echo "Creating systemd service... /etc/systemd/system/${SERVICENAME}.service"
+echo "Creating systemd service at /etc/systemd/system/${SERVICENAME}.service"
 # Create systemd service file
 sudo cat >/etc/systemd/system/$SERVICENAME.service <<EOF
 [Unit]
