@@ -34,5 +34,5 @@ echo "Restart containers (if needed)"
 cd ${REPO_PATH}/book/ch11-example-setup/containers/core-app
 docker compose up -d
 cd ${REPO_PATH}/book/ch11-example-setup/containers/web-servers
-docker compose up -d
+docker compose up -d nginx
 echo "restarts done."
