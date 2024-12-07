@@ -3,9 +3,9 @@ from flask import Flask
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route('/')
 def hello_world():
-    return "<p>Hello, World from faster Docker and Python with <code>uv python</code>!</p>"
+    return '<p>Hello, World from faster Docker and Python with <code>uv python</code>!</p>'
 
 
 if __name__ == '__main__':
