@@ -129,7 +129,6 @@ cd /cluster-data/
 mkdir -p /cluster-data/nginx/static
 mkdir -p /cluster-data/nginx/logs
 mkdir -p /cluster-data/nginx/sites-enabled
-mkdir -p /cluster-data/nginx/usr-share-nginx
 mkdir -p /cluster-data/nginx/letsencrypt-etc
 mkdir -p /cluster-data/nginx/letsencrypt-www
 mkdir -p /cluster-data/nginx/certbot/www
