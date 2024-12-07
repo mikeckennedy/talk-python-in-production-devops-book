@@ -20,5 +20,5 @@ git pull
 echo "HTMX sample app code done"
 
 echo "Updating static files"
-cp -r ${REPO_PATH}/book/ch11-example-setup/containers/core-app/video-collector-docker/src/htmx-python-course/code/ch7_infinite_scroll/ch7_final_video_collector/static /cluster-data/nginx/static/video-collector
+cp -r ${REPO_PATH}/book/ch11-example-setup/containers/core-app/video-collector-docker/src/htmx-python-course/code/ch7_infinite_scroll/ch7_final_video_collector/static/* /cluster-data/nginx/static/video-collector
 echo "Static files done"
