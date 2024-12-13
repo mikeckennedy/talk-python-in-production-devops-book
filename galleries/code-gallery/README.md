@@ -6,16 +6,20 @@ They are also available on GitHub with GitHub highlighting and formatting so you
 
 ## Chapter 5: Running on Rust
 
-### Code block 05-01
+### Code block 05-01 - Linux Shell
 
-```
+```bash
+# Warning from Flask when executing app.run()
+
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
 ```
 
-### Code block 05-02
+### Code block 05-02 - Linux Shell
 
-```
-talkpython.quart_app:app \ 
+```bash
+# Command to run talkpython.fm in a production app server.
+
+granian talkpython.quart_app:app \ 
        --host 0.0.0.0 --port 8801 \ 
        --interface asgi \ 
        --no-ws 
@@ -30,6 +34,9 @@ talkpython.quart_app:app \
 ### Code block 05-03 - Docker
 
 ```dockerfile
+# Command to run talkpython.fm in 
+# a Docker container.
+
 ENTRYPOINT [  \
   "/venv/bin/granian",\
   "talkpython.quart_app:app", \
@@ -56,12 +63,15 @@ ENTRYPOINT [  \
 ### Code block 06-01 - Linux Shell
 
 ```bash
+# Create a persistent volumne outside lifetime of compose containers.
 docker volume create umami-volume
 ```
 
-### Code block 06-02 - Docker
+### Code block 06-02 - Docker Compose
 
-```dockerfile
+```yaml
+# Modified compose.yaml file to use external data volume.
+
 umami_db:
     # ...
     volumes:
@@ -76,13 +86,15 @@ volumes:
 ### Code block 06-03 - Linux Shell
 
 ```bash
-# In the folder with the docker-compose.yml file:
+# In the Umami folder with the docker-compose.yml file:
 docker compose up
 ```
 
-### Code block 06-04 - Docker
+### Code block 06-04 - Docker Compose
 
-```dockerfile
+```yaml
+# Compose file defining Uptime Kuma config.
+
 services:
   uptime-kuma:
     image: louislam/uptime-kuma:1
@@ -96,12 +108,15 @@ services:
 ### Code block 06-05 - Linux Shell
 
 ```bash
+# Recommended external data for Uptime Kuma.
 docker volume create kuma-volume
 ```
 
-### Code block 06-06 - Docker
+### Code block 06-06 - Docker Compose
 
-```dockerfile
+```yaml
+# Uptime Kuma Docker Compose config with external volume.
+
 services:
   uptime-kuma:
     image: louislam/uptime-kuma:1
@@ -221,6 +236,8 @@ tail -n 500 -f /cluster/logs/talkpython/request-log.log
 ### Code block 08-01 - Docker
 
 ```dockerfile
+# Simple Dockerfile example to illustrate layers in Docker build
+
 FROM ubuntu:latest
 
 RUN mkdir /app
@@ -235,6 +252,8 @@ ENTRYPOINT [ ... your startup command here ... ]
 ### Code block 08-02 - Docker
 
 ```dockerfile
+# Reorder independent commands for faster rebuilds
+
 FROM ubuntu:latest
 
 # Move ahead
@@ -251,6 +270,8 @@ ENTRYPOINT [ ... your startup command here ... ]
 ### Code block 08-03 - Docker
 
 ```dockerfile
+# A docker file for a basic Flask application.
+
 FROM ubuntu:latest
 
 # Move ahead
@@ -279,6 +300,8 @@ ENTRYPOINT [ ... your startup command here ... ]
 ### Code block 08-04 - Docker
 
 ```dockerfile
+# Splitting the requirements file copy and the source files copy.
+
 # ############ FOCUS HERE ##############
 ...
 
@@ -296,6 +319,8 @@ COPY ./src/ /app
 ### Code block 08-05 - Docker
 
 ```dockerfile
+# Cache the venv by moving it before copied files.
+
 # ############ FOCUS HERE ##############
 ...
 
@@ -313,6 +338,8 @@ COPY ./src/ /app
 ### Code block 08-06 - Docker
 
 ```dockerfile
+# Add uv tooling and use it to install requirements.
+
 FROM ubuntu:latest
 
 # ...
@@ -337,12 +364,14 @@ RUN uv pip install -r requirements.txt
 
 COPY ./src/ /app
 
-...
+# ...
 ```
 
 ### Code block 08-07 - Docker
 
 ```dockerfile
+# mount command persists uv cache across builds (even rebuilds).
+
 FROM ubuntu:latest
 
 # ...
@@ -350,13 +379,15 @@ FROM ubuntu:latest
 # Use uv now rather than pip
 RUN --mount=type=cache,target=/root/.cache uv pip install -r requirements.txt
 
-...
+# ...
 ```
 
 ### Code block 08-08 - Docker
 
 ```dockerfile
-# .dockerignore - place next to Dockerfile
+# Going faster by ignoring files.
+
+# .dockerignore - located next to Dockerfile
 .git
 **/.git
 **/.github
@@ -374,9 +405,11 @@ RUN --mount=type=cache,target=/root/.cache uv pip install -r requirements.txt
 
 ## Chapter 9: NGINX, containers, and let's encrypt
 
-### Code block 09-01
+### Code block 09-01 - NGINX
 
-```
+```nginx
+# A very basic talkpython.fm NGINX file.
+
 server {
     listen 80;
     server_name talkpython.fm;
@@ -419,14 +452,16 @@ server {
 }
 ```
 
-### Code block 09-02
+### Code block 09-02 - Docker Compose
 
-```
+```yaml
+# Docker Compose file for connecting NGINX and CertBox.
+
 services:
 
-  NGINX:
-    image: NGINX:latest
-    container_name: NGINX
+  nginx:
+    image: nginx:latest
+    container_name: nginx
     restart: unless-stopped
     ports:
       - "80:80"
@@ -459,12 +494,15 @@ networks:
 ### Code block 09-03 - Linux Shell
 
 ```bash
-dc run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d talkpython.fm
+# Command to run certbot within Docker Compose config.
+docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d talkpython.fm
 ```
 
 ### Code block 09-04 - NGINX
 
 ```nginx
+# Updated NGINX config with newly created certificate files.
+
 server {
     server_name talkpython.fm;
     charset utf-8;
@@ -528,12 +566,16 @@ server {
 ### Code block 09-05 - Linux Shell
 
 ```bash
+# Command to run CertBot to renew all domains.
+
 docker compose run --rm certbot renew --webroot --webroot-path /var/www/certbot/
 ```
 
 ### Code block 09-06 - Linux Shell
 
 ```bash
+# Output from renewing all domains.
+
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1490,14 +1532,54 @@ server {
 }
 ```
 
+### Code block 12-04 - Python
+
+```python
+# Python code to pull sitemap entries from nested static site 
+# This is used to add them back to the root website's sitemap.
+BlogMapEntry = namedtuple('BlogMapEntry', ['loc', 'modified'])
+
+def get_items_from_blog_sitemap() -> list[BlogMapEntry]:
+    resp = requests.get('https://talkpython.fm/blog/sitemap.xml')
+    resp.raise_for_status()
+
+    ns = {'ns': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
+    root = ElementTree.fromstring(resp.text)
+
+    excludes = ['/categories/', '/tags/']
+
+    # Extract loc and lastmod elements
+    url_info = []
+    for url in root.findall('ns:url', ns):
+        loc = url.find('ns:loc', ns).text
+        lastmod = url.find('ns:lastmod', ns)
+        lastmod_text = lastmod.text if lastmod is not None else None
+        entry = BlogMapEntry(loc, lastmod_text)
+
+        skip = False
+        for exclude in excludes:
+            if exclude in entry.loc:
+                skip = True
+                break
+
+        if skip:
+            continue
+
+        url_info.append(entry)
+
+    return url_info
+```
+
 
 --------------------------------------------------------------------------------
 
-## Chapter 13: Changing web frameworks
+## Chapter 13: Picking a Python web framework
 
 ### Code block 13-01 - Python
 
 ```python
+# Flask blueprints that define Talk Python's global structure.
+
 import quart
 # ...
 
@@ -1524,6 +1606,8 @@ def register_blueprints(app: quart.Quart):
 ### Code block 13-02 - Python
 
 ```python
+# Example of an asynchronous Flask view using chameleon_flask
+
 @app.get('/catalog/item/{item_id}')
 @chameleon_flask.template('catalog/item.pt')
 async def item(item_id: int):
@@ -1537,10 +1621,12 @@ async def item(item_id: int):
 ### Code block 13-03 - Python
 
 ```python
+# Async data access leads to a secondary init function
+
 @episodes_blueprint.get('/<int:show_id>')
 async def show_by_number(show_id: int):
     vm = ShowEpisodeViewMode(show_id, -1)
-    await vm.load_async()
+    await vm.load_async() # Now needed for await
     if vm.episode is None:
         quart.abort(404)
 
