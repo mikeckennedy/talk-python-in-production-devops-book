@@ -1,4 +1,4 @@
-# Appendix: Code Gallery
+# Code Gallery
 
 This gallery contains all the code blocks from the book. They are replicated here into a single location so that you can browse through them more easily.
 
