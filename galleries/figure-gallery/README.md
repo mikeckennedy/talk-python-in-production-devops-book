@@ -5,71 +5,71 @@ This gallery contains high-quality versions of all the images in the book. Some 
 
 **LICENSE**: Images in the image gallery are copyrighted and not available for reuse.
 
-# Gallery: Chapter 03 - One big server rather than many small ones
+## Chapter 03 Gallery - One Big Server Rather Than Many Small Ones
 
-[![](figures/03-01-workload-talkpython-apps.png)](figures/03-01-workload-talkpython-apps.png)
-Figure 03-01: [](figures/03-01-workload-talkpython-apps.png)
-
-
-
-----------------------------
-
-# Gallery: Chapter 05 - Running on Rust
-
-[![](figures/05-01-architecture-tiers.png)](figures/05-01-architecture-tiers.png)
-Figure 05-01: [](figures/05-01-architecture-tiers.png)
-
-
-[![](figures/05-02-granian-lots-of-granian.png)](figures/05-02-granian-lots-of-granian.png)
-Figure 05-02: [](figures/05-02-granian-lots-of-granian.png)
+[![Workload over time at our server](figures/03-01-workload-talkpython-apps.png)](figures/03-01-workload-talkpython-apps.png)
+Figure 03-01: [Workload over time at our server](figures/03-01-workload-talkpython-apps.png)
 
 
 
 ----------------------------
 
-# Gallery: Chapter 06 - The unexpected benefits of self-hosting
+## Chapter 05 Gallery - Running on Rust
 
-[![](figures/06-01-server-tree.png)](figures/06-01-server-tree.png)
-Figure 06-01: [](figures/06-01-server-tree.png)
-
-
-[![](figures/06-02-events-chart.png)](figures/06-02-events-chart.png)
-Figure 06-02: [](figures/06-02-events-chart.png)
+[![Visualization of Linux running Docker running our infrastructure.](figures/05-01-architecture-tiers.png)](figures/05-01-architecture-tiers.png)
+Figure 05-01: [Visualization of Linux running Docker running our infrastructure.](figures/05-01-architecture-tiers.png)
 
 
-[![](figures/06-03-uptime-kuma.png)](figures/06-03-uptime-kuma.png)
-Figure 06-03: [](figures/06-03-uptime-kuma.png)
-
-
-[![](figures/06-04-status-talkpython.png)](figures/06-04-status-talkpython.png)
-Figure 06-04: [](figures/06-04-status-talkpython.png)
+[![View of processes on Docker host machine.](figures/05-02-granian-lots-of-granian.png)](figures/05-02-granian-lots-of-granian.png)
+Figure 05-02: [View of processes on Docker host machine.](figures/05-02-granian-lots-of-granian.png)
 
 
 
 ----------------------------
 
-# Gallery: Chapter 07 - Visualizing servers and other tools
+## Chapter 06 Gallery - The Unexpected Benefits of Self-Hosting
 
-[![](figures/07-01-btop-dashboard.jpg)](figures/07-01-btop-dashboard.jpg)
-Figure 07-01: [](figures/07-01-btop-dashboard.jpg)
-
-
-[![](figures/07-02-btop-options.jpg)](figures/07-02-btop-options.jpg)
-Figure 07-02: [](figures/07-02-btop-options.jpg)
+[![Abstract visualization of our Docker infrastructure.](figures/06-01-server-tree.png)](figures/06-01-server-tree.png)
+Figure 06-01: [Abstract visualization of our Docker infrastructure.](figures/06-01-server-tree.png)
 
 
-[![](figures/07-03-glances.jpg)](figures/07-03-glances.jpg)
-Figure 07-03: [](figures/07-03-glances.jpg)
+[![Event graph in Umami.](figures/06-02-events-chart.png)](figures/06-02-events-chart.png)
+Figure 06-02: [Event graph in Umami.](figures/06-02-events-chart.png)
 
 
-[![](figures/07-04-docker-cluster-monitor.jpg)](figures/07-04-docker-cluster-monitor.jpg)
-Figure 07-04: [](figures/07-04-docker-cluster-monitor.jpg)
+[![Uptime Kuma home page.](figures/06-03-uptime-kuma.png)](figures/06-03-uptime-kuma.png)
+Figure 06-03: [Uptime Kuma home page.](figures/06-03-uptime-kuma.png)
+
+
+[![Uptime Kuma status page for Talk Python.](figures/06-04-status-talkpython.png)](figures/06-04-status-talkpython.png)
+Figure 06-04: [Uptime Kuma status page for Talk Python.](figures/06-04-status-talkpython.png)
 
 
 
 ----------------------------
 
-# Gallery: Chapter 09 - NGINX, containers, and let's encrypt
+## Chapter 07 Gallery - Visualizing Servers and Other Tools
+
+[![btop dashboard updating real-time at Talk Python.](figures/07-01-btop-dashboard.jpg)](figures/07-01-btop-dashboard.jpg)
+Figure 07-01: [btop dashboard updating real-time at Talk Python.](figures/07-01-btop-dashboard.jpg)
+
+
+[![btop's graphical options screen, over SSH!](figures/07-02-btop-options.jpg)](figures/07-02-btop-options.jpg)
+Figure 07-02: [btop's graphical options screen, over SSH!](figures/07-02-btop-options.jpg)
+
+
+[![Glances dashboard updating real-time at Talk Python.](figures/07-03-glances.jpg)](figures/07-03-glances.jpg)
+Figure 07-03: [Glances dashboard updating real-time at Talk Python.](figures/07-03-glances.jpg)
+
+
+[![Docker Cluster Monitor of the containers at Talk Python.](figures/07-04-docker-cluster-monitor.jpg)](figures/07-04-docker-cluster-monitor.jpg)
+Figure 07-04: [Docker Cluster Monitor of the containers at Talk Python.](figures/07-04-docker-cluster-monitor.jpg)
+
+
+
+----------------------------
+
+## Chapter 09 Gallery - NGINX, Containers, and Let's Encrypt
 
 [![](figures/05-01-architecture-tiers.png)](figures/05-01-architecture-tiers.png)
 Figure 09-01: [](figures/05-01-architecture-tiers.png)
@@ -78,7 +78,7 @@ Figure 09-01: [](figures/05-01-architecture-tiers.png)
 
 ----------------------------
 
-# Gallery: Chapter 10 - CDNs
+## Chapter 10 Gallery - CDNs
 
 [![](figures/10-01-cdn-pops.jpg)](figures/10-01-cdn-pops.jpg)
 Figure 10-01: [](figures/10-01-cdn-pops.jpg)
@@ -87,7 +87,7 @@ Figure 10-01: [](figures/10-01-cdn-pops.jpg)
 
 ----------------------------
 
-# Gallery: Chapter 11 - Example Server Setup
+## Chapter 11 Gallery - Example Server Setup
 
 [![](figures/11-01-hetzner-projects.png)](figures/11-01-hetzner-projects.png)
 Figure 11-01: [](figures/11-01-hetzner-projects.png)
@@ -144,7 +144,7 @@ Figure 11-13: [](figures/11-12-deploy-output.png)
 
 ----------------------------
 
-# Gallery: Chapter 12 - Static sites and Hugo
+## Chapter 12 Gallery - Static Sites and Hugo
 
 [![](figures/12-01-hugo.png)](figures/12-01-hugo.png)
 Figure 12-01: [](figures/12-01-hugo.png)
@@ -173,7 +173,7 @@ Figure 12-06: [](figures/12-06-talk-python-blog.png)
 
 ----------------------------
 
-# Gallery: Chapter 13 - Picking a Python web framework
+## Chapter 13 Gallery - Picking a Python Web Framework
 
 [![](figures/13-01-frameworks.png)](figures/13-01-frameworks.png)
 Figure 13-01: [](figures/13-01-frameworks.png)
@@ -190,7 +190,7 @@ Figure 13-03: [](figures/13-03-quart-to-async.png)
 
 ----------------------------
 
-# Gallery: Chapter 14 - Sometimes you should build it yourself
+## Chapter 14 Gallery - Sometimes You Should Build It Yourself
 
 [![](figures/14-01-other-podcast.jpg)](figures/14-01-other-podcast.jpg)
 Figure 14-01: [](figures/14-01-other-podcast.jpg)
@@ -219,7 +219,7 @@ Figure 14-06: [](figures/14-06-twitter-share.jpg)
 
 ----------------------------
 
-# Gallery: Chapter 15 - Moving to Hetzner (a Retrospective)
+## Chapter 15 Gallery - Moving to Hetzner (a Retrospective)
 
 [![](figures/15-01-hetzner-dashboard.png)](figures/15-01-hetzner-dashboard.png)
 Figure 15-01: [](figures/15-01-hetzner-dashboard.png)
@@ -236,7 +236,7 @@ Figure 15-03: [](figures/15-03-bandwidth-and-cpu-compared.png)
 
 ----------------------------
 
-# Gallery: Chapter 16 - Opposite of cloud native is?
+## Chapter 16 Gallery - Opposite of Cloud-Native Is?
 
 [![](figures/16-01-cloud-native-diagram-final.png)](figures/16-01-cloud-native-diagram-final.png)
 Figure 16-01: [](figures/16-01-cloud-native-diagram-final.png)

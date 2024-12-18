@@ -1,15 +1,13 @@
-# Code Gallery
+# Appendix: Code Gallery
 
 This gallery contains all the code blocks from the book. They are replicated here into a single location so that you can browse through them more easily.
-
-They are also available on GitHub with GitHub highlighting and formatting so you can read them on your computer directly. This is especially helpful if your e-reader is cutting of blocks of code or making it hard to read.
 
 ## Chapter 5: Running on Rust
 
 ### Code block 05-01 - Linux Shell
 
 ```bash
-# Warning from Flask when executing app.run()
+# Flask when executing app.run()
 
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
 ```
@@ -58,12 +56,12 @@ ENTRYPOINT [  \
 
 --------------------------------------------------------------------------------
 
-## Chapter 6: The unexpected benefits of self-hosting
+## Chapter 6: The Unexpected Benefits of Self-Hosting
 
 ### Code block 06-01 - Linux Shell
 
 ```bash
-# Create a persistent volumne outside lifetime of compose containers.
+# Create a persistent volume outside lifetime of containers.
 docker volume create umami-volume
 ```
 
@@ -136,7 +134,7 @@ volumes:
 
 --------------------------------------------------------------------------------
 
-## Chapter 7: Visualizing servers and other tools
+## Chapter 7: Visualizing Servers and Other Tools
 
 ### Code block 07-01 - Linux Shell
 
@@ -147,15 +145,23 @@ apt install btop
 ### Code block 07-02 - Linux Shell
 
 ```bash
+# Download and install Glances utility using Docker isolation.
+
 docker pull nicolargo/glances:latest-full
+
 docker run --rm -e TZ="${TZ}" -v /var/run/docker.sock:/var/run/docker.sock:ro -v /run/user/1000/podman/podman.sock:/run/user/1000/podman/podman.sock:ro --pid host --network host -it nicolargo/glances:latest-full
 ```
 
 ### Code block 07-03 - Linux Shell
 
 ```bash
-# in .zshrc / .bashrc
+# Alias for Glances to make it super easy to run.
+
+# Add these three aliases in your .zshrc / .bashrc 
+# file on the host server:
+
 alias update_glances="docker pull nicolargo/glances:latest-full"
+
 alias run_glances="docker run --rm -e TZ="${TZ}" -v /var/run/docker.sock:/var/run/docker.sock:ro -v /run/user/1000/podman/podman.sock:/run/user/1000/podman/podman.sock:ro --pid host --network host -it nicolargo/glances:latest-full"
 
 alias glances="update_glances && run_glances"
@@ -164,30 +170,40 @@ alias glances="update_glances && run_glances"
 ### Code block 07-04 - Linux Shell
 
 ```bash
+# Installing Docker Cluster Monitor via uv.
+
 uv tool install dockerclustermon
 ```
 
 ### Code block 07-05 - Linux Shell
 
 ```bash
+# Installing Docker Cluster Monitor via uv.
+
 pipx install dockerclustermon
 ```
 
 ### Code block 07-06 - Linux Shell
 
 ```bash
-dockerstatus servername
+# Monitor Docker cluster at server SERVERNAME
+
+dockerstatus SERVERNAME
 ```
 
 ### Code block 07-07 - Linux Shell
 
 ```bash
+# Log into NGINX's running Docker container (starting Bash).
+
 docker exec -it nginx bash
 ```
 
 ### Code block 07-08 - Linux Shell
 
 ```bash
+# Log into running app server in Docker container (starting OhMyZSH).
+
 docker exec -it talkpython zsh
 (venv) ➜  /app
 ```
@@ -195,6 +211,9 @@ docker exec -it talkpython zsh
 ### Code block 07-09 - Linux Shell
 
 ```bash
+# .zshrc file: Set up OhMyZSH and 
+# activate Python's venv on login.
+
 export ZSH="/root/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 plugins=()
@@ -206,13 +225,17 @@ source /venv/bin/activate
 ### Code block 07-10 - Docker
 
 ```dockerfile
+# Docker command to install ZSH and set up OhMyZSH.
+
 # Uses "robbyrussell" theme (original Oh My Zsh theme), with no plugins
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.2.0/zsh-in-docker.sh)" -- -t robbyrussell
 ```
 
-### Code block 07-11 - Docker
+### Code block 07-11 - Docker Compose
 
-```dockerfile
+```yaml
+# Docker Compose config to make logs persistent on host and "tailable."
+
 services:
   talkpython:
     image: talkpython
@@ -225,18 +248,20 @@ services:
 ### Code block 07-12 - Linux Shell
 
 ```bash
+# Command to tail the log and follow it for Talk Python's app server.
+
 tail -n 500 -f /cluster/logs/talkpython/request-log.log
 ```
 
 
 --------------------------------------------------------------------------------
 
-## Chapter 8: Docker performance tips
+## Chapter 8: Docker Performance Tips
 
 ### Code block 08-01 - Docker
 
 ```dockerfile
-# Simple Dockerfile example to illustrate layers in Docker build
+# Simple Dockerfile example to illustrate layers in Docker build.
 
 FROM ubuntu:latest
 
@@ -252,7 +277,7 @@ ENTRYPOINT [ ... your startup command here ... ]
 ### Code block 08-02 - Docker
 
 ```dockerfile
-# Reorder independent commands for faster rebuilds
+# Reorder independent commands for faster rebuilds.
 
 FROM ubuntu:latest
 
@@ -403,7 +428,7 @@ RUN --mount=type=cache,target=/root/.cache uv pip install -r requirements.txt
 
 --------------------------------------------------------------------------------
 
-## Chapter 9: NGINX, containers, and let's encrypt
+## Chapter 9: NGINX, Containers, and Let's Encrypt
 
 ### Code block 09-01 - NGINX
 
@@ -596,41 +621,48 @@ The following certificates are not due for renewal yet:
 ### Code block 10-01 - HTML
 
 ```html
+<!-- CSS URL using CDN, cdn-podcast.talkpython.fm domain. -->
 https://cdn-podcast.talkpython.fm/static/css/site.css?cache_id=9b9f84
 ```
 
 ### Code block 10-02 - HTML
 
 ```html
+<!-- CSS URL served from our server directly. -->
 /static/css/site.css?cache_id=9b9f84
 ```
 
 ### Code block 10-03 - HTML
 
 ```html
+<!-- Audio file using large file download CDN. -->
 https://download-cdn.talkpython.fm/podcasts/talkpython/487-building-rust-extensions-for-python.mp3
 ```
 
 
 --------------------------------------------------------------------------------
 
-## Chapter 11: Example server setup
+## Chapter 11: Example Server Setup
 
-### Code block 11-01 - Hosts
+### Code block 11-01 - Hosts file
 
-```hosts
+```bash
+# Entry in /etc/hosts or C:\Windows\System32\drivers\etc\hosts
 20.21.22.23   		pyprod-host
 ```
 
 ### Code block 11-02 - Linux Shell
 
 ```bash
+# Connect to pyprod-host using SSH (needs hosts entry).
 ssh root@pyprod-host
 ```
 
 ### Code block 11-03 - Linux Shell
 
 ```bash
+# Welcome screen at pyprod-host.
+
 Welcome to Ubuntu 24.04.1 LTS (GNU/Linux 6.8.0-49-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
@@ -662,6 +694,8 @@ See https://ubuntu.com/esm or run: sudo pro status
 ### Code block 11-04 - Linux Shell
 
 ```bash
+# Entry in ~/.ssh/config to simplify SSH for macOS/Linux.
+
 Host pyprod-host
     HostName pyprod-host
     User root
@@ -679,6 +713,8 @@ $ reboot
 ### Code block 11-06 - Linux Shell
 
 ```bash
+# File (fragment 1): book/ch11-example-setup/setup-host-server.sh
+
 ############################################################
 # Setup the server itself including ohmyzsh
 apt-get update
@@ -731,6 +767,8 @@ source ~/.zshrc
 ### Code block 11-07 - Linux Shell
 
 ```bash
+# File (fragment 2): book/ch11-example-setup/setup-host-server.sh
+
 ############################################################
 # Setup docker on the server.
 
@@ -767,7 +805,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 ### Code block 11-08 - Linux Shell
 
 ```bash
-# Test Docker by running hello-world:
+# Test Docker by running hello-world.
 docker run hello-world
 ```
 
@@ -782,6 +820,8 @@ docker network create -d bridge cluster-network --subnet=174.44.0.0/16
 ### Code block 11-10 - Linux Shell
 
 ```bash
+# Example command to create an external Docker volume (disk).
+
 # Do NOT run this command, it's just for your refernce.
 # We are not using external volumes in our example.
 docker volume create NAME
@@ -884,6 +924,8 @@ RUN echo "We're good."
 ### Code block 11-15 - Linux Shell
 
 ```bash
+# Docker Compose command to build the foundational Docker images.
+
 cd /cluster-src/book/ch11-example-setup/containers/base-images/
 docker compose build
 ```
@@ -952,9 +994,10 @@ ENTRYPOINT [  \
     ]
 ```
 
-### Code block 11-18 - Docker
+### Code block 11-18 - Docker Compose
 
-```dockerfile
+```yaml
+# Docker Compose file defining Video Collector's infrastructure settings.
 # File: book/ch11-example-setup/containers/core-app/compose.yaml
 
 services:
@@ -1087,43 +1130,14 @@ Enabling & starting core-app
 ### Code block 11-29 - Linux Shell
 
 ```bash
-nano /etc/systemd/system/core-app.service
+# Check on the new Docker Compose based service.
+service core-app status
 ```
 
 ### Code block 11-30 - Linux Shell
 
 ```bash
-[Unit]
-Description=core-app
-Requires=docker.service
-After=docker.service
-
-[Service]
-Restart=always
-User=root
-Group=docker
-TimeoutStopSec=15
-WorkingDirectory=/cluster-src/book/ch11-example-setup/containers/core-app
-# ExecStartPre= -f docker-compose.yml down # <<< COMMENT OUT
-ExecStart=docker compose up # <<< Change command here!
-ExecStop=docker compose down # <<< Change command here!
-
-[Install]
-WantedBy=multi-user.target
-```
-
-### Code block 11-31 - Linux Shell
-
-```bash
-# Reload and restart the service
-systemctl daemon-reload
-service core-app start
-```
-
-### Code block 11-32 - Linux Shell
-
-```bash
-# Reboot the server to ensure the service is auto-starting.
+# Reboot the server to verify the service is auto-starting.
 reboot
 
 # Wait 10 seconds for the server to start.
@@ -1137,7 +1151,7 @@ http -h localhost:15000
 docker ps
 ```
 
-### Code block 11-33 - Docker
+### Code block 11-31 - Docker
 
 ```dockerfile
 # File: book/ch11-example-setup/containers/web-servers/compose.yaml
@@ -1218,7 +1232,7 @@ networks:
     external: true
 ```
 
-### Code block 11-34 - Linux Shell
+### Code block 11-32 - Linux Shell
 
 ```bash
 ############################################################
@@ -1234,7 +1248,7 @@ mkdir -p /cluster-data/nginx/letsencrypt-www
 mkdir -p /cluster-data/nginx/certbot/www
 ```
 
-### Code block 11-35 - Linux Shell
+### Code block 11-33 - Linux Shell
 
 ```bash
 # Copy dot-env-template.sh to .env and edit .env for NGINX
@@ -1243,7 +1257,7 @@ cp dot-env-template.sh .env
 nano .env
 ```
 
-### Code block 11-36 - Linux Shell
+### Code block 11-34 - Linux Shell
 
 ```bash
 # Launch NGINX with Docker Compose.
@@ -1251,7 +1265,7 @@ cd book/ch11-example-setup/containers/web-servers/
 docker compose up
 ```
 
-### Code block 11-37 - Linux Shell
+### Code block 11-35 - Linux Shell
 
 ```bash
 # Test our empty NGINX container is handling requests.
@@ -1265,7 +1279,7 @@ Content-Type: text/html
 Server: nginx/1.27.3
 ```
 
-### Code block 11-38 - Linux Shell
+### Code block 11-36 - Linux Shell
 
 ```bash
 # Create a systemd daemon for NGINX.
@@ -1273,7 +1287,7 @@ cd /cluster-src/book/ch11-example-setup/containers/web-servers/
 bash /cluster-src/book/ch11-example-setup/scripts/create-docker-compose-service.sh
 ```
 
-### Code block 11-39 - Linux Shell
+### Code block 11-37 - Linux Shell
 
 ```bash
 # Output from systemd daemon NGINX script.
@@ -1281,7 +1295,7 @@ Creating systemd service... /etc/systemd/system/web-servers.service
 Enabling & starting core-app
 ```
 
-### Code block 11-40 - NGINX
+### Code block 11-38 - NGINX
 
 ```nginx
 # File: book/ch11-example-setup/containers/web-servers/nginx-base-configs/video-collector.nginx
@@ -1367,14 +1381,14 @@ server {
 }
 ```
 
-### Code block 11-41 - Linux Shell
+### Code block 11-39 - Linux Shell
 
 ```bash
 # Copy static files over to a static location visible to NGINX.
 cp -r /cluster-src/book/ch11-example-setup/containers/core-app/video-collector-docker/src/htmx-python-course/code/ch7_infinite_scroll/ch7_final_video_collector/static/* /cluster-data/nginx/static/video-collector
 ```
 
-### Code block 11-42 - Linux Shell
+### Code block 11-40 - Linux Shell
 
 ```bash
 # Verify the mapped static folder contains the correct file structure.
@@ -1391,7 +1405,7 @@ tree /cluster-data/nginx/static/video-collector -d
 └── js
 ```
 
-### Code block 11-43 - Linux Shell
+### Code block 11-41 - Linux Shell
 
 ```bash
 # Reload and update NGINX's configuration files.
@@ -1399,9 +1413,9 @@ cd /cluster-src/book/ch11-example-setup/containers/web-servers/
 docker compose exec -t nginx nginx -s reload
 ```
 
-### Code block 11-44 - Hosts
+### Code block 11-42 - Hosts file
 
-```hosts
+```bash
 # On YOUR CLIENT machine's hosts, enter:
 
 # Existing
@@ -1414,7 +1428,7 @@ docker compose exec -t nginx nginx -s reload
 
 --------------------------------------------------------------------------------
 
-## Chapter 12: Static sites and Hugo
+## Chapter 12: Static Sites and Hugo
 
 ### Code block 12-01 - NGINX
 
@@ -1573,7 +1587,7 @@ def get_items_from_blog_sitemap() -> list[BlogMapEntry]:
 
 --------------------------------------------------------------------------------
 
-## Chapter 13: Picking a Python web framework
+## Chapter 13: Picking a Python Web Framework
 
 ### Code block 13-01 - Python
 
