@@ -8,7 +8,7 @@ This gallery contains all the code blocks from the book organized by chapter. Ea
 * [Chapter 6: The Unexpected Benefits of Self-Hosting](#chapter-6-the-unexpected-benefits-of-self-hosting)
 * [Chapter 7: Visualizing Servers and Other Tools](#chapter-7-visualizing-servers-and-other-tools)
 * [Chapter 8: Docker Performance Tips](#chapter-8-docker-performance-tips)
-* [Chapter 9: NGINX, Containers, and Let's Encrypt](#chapter-9-nginx-containers-and-let's-encrypt)
+* [Chapter 9: NGINX, Containers, and Let's Encrypt](#chapter-9-nginx-containers-and-lets-encrypt)
 * [Chapter 10: CDNs](#chapter-10-cdns)
 * [Chapter 11: Example Server Setup](#chapter-11-example-server-setup)
 * [Chapter 12: Static Sites and Hugo](#chapter-12-static-sites-and-hugo)
