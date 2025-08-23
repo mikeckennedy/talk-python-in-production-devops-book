@@ -5,6 +5,21 @@ This gallery contains high-quality versions of all the images in the book. Some 
 
 **LICENSE**: Images in the image gallery are copyrighted and not available for reuse without express permission.
 
+## Table of Contents
+
+* [Chapter 3: One Big Server Rather Than Many Small Ones](#chapter-03-gallery---one-big-server-rather-than-many-small-ones)
+* [Chapter 5: Running on Rust](#chapter-05-gallery---running-on-rust)
+* [Chapter 6: The Unexpected Benefits of Self-Hosting](#chapter-06-gallery---the-unexpected-benefits-of-self-hosting)
+* [Chapter 7: Visualizing Servers and Other Tools](#chapter-07-gallery---visualizing-servers-and-other-tools)
+* [Chapter 9: NGINX, Containers, and Let's Encrypt](#chapter-09-gallery---nginx-containers-and-lets-encrypt)
+* [Chapter 10: CDNs](#chapter-10-gallery---cdns)
+* [Chapter 11: Example Server Setup](#chapter-11-gallery---example-server-setup)
+* [Chapter 12: Static Sites and Hugo](#chapter-12-gallery---static-sites-and-hugo)
+* [Chapter 13: Picking a Python Web Framework](#chapter-13-gallery---picking-a-python-web-framework)
+* [Chapter 14: Sometimes You Should Build It Yourself](#chapter-14-gallery---sometimes-you-should-build-it-yourself)
+* [Chapter 15: Moving to Hetzner (a Retrospective)](#chapter-15-gallery---moving-to-hetzner-a-retrospective)
+* [Chapter 16: Opposite of Cloud-Native Is?](#chapter-16-gallery---opposite-of-cloud-native-is)
+
 ## Chapter 03 Gallery - One Big Server Rather Than Many Small Ones
 
 [![Workload over time at our server](figures/03-01-workload-talkpython-apps.png)](figures/03-01-workload-talkpython-apps.png)
