@@ -1,6 +1,8 @@
 # Talk Python in Production – Code & Resources Companion Repository
 
-Welcome to Python in Production, the code gallery and resources that accompany the book “[Talk Python in Production](https://talkpython.fm/books/python-in-production)” – a cloud‑agnostic guide to building, scaling, and managing your own Python infrastructure. This repository exists to help readers and curious developers explore the hands‑on examples, scripts, configuration files, and high‑resolution figures described in the book. If you discovered this project first, head over to the book site to read more about the philosophy and to purchase or [read the book online](https://talkpython.fm/books/python-in-production).
+[![](./images/devops-book-web-hero.webp)](https://talkpython.fm/books/python-in-production)
+
+Welcome to Python in Production, the code gallery and resources that accompany the book “[Talk Python in Production](https://talkpython.fm/books/python-in-production)” – a cloud‑agnostic guide to building, scaling, and managing your own Python infrastructure. This repository exists to help readers and curious developers explore the hands‑on examples, scripts, configuration files, and high‑resolution figures described in the book. If you discovered this project first, head over to the book site to read more about the [philosophy]() and to purchase or [read the book online](https://talkpython.fm/books/python-in-production).
 
 ## About the book
 
