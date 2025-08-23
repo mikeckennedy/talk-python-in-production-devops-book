@@ -3,7 +3,7 @@
 This gallery contains high-quality versions of all the images in the book. Some readers have very high fidelity with the original: Apple Books or the Kindle App on iPad, the Kindle app on  Android tablets, or even the Kindle app on your PC. Others, not so much. Devices like Kindle e-ink readers, Remarkable tablets, and other e-ink devices often have low pixel density and significantly reduce quality.
 
 
-**LICENSE**: Images in the image gallery are copyrighted and not available for reuse.
+**LICENSE**: Images in the image gallery are copyrighted and not available for reuse without express permission.
 
 ## Chapter 03 Gallery - One Big Server Rather Than Many Small Ones
 
@@ -80,8 +80,8 @@ Figure 09-01: [](figures/05-01-architecture-tiers.png)
 
 ## Chapter 10 Gallery - CDNs
 
-[![](figures/10-01-cdn-pops.jpg)](figures/10-01-cdn-pops.jpg)
-Figure 10-01: [](figures/10-01-cdn-pops.jpg)
+[![119 POPs (Points of Presence) for our CDN](figures/10-01-cdn-pops.jpg)](figures/10-01-cdn-pops.jpg)
+Figure 10-01: [119 POPs (Points of Presence) for our CDN](figures/10-01-cdn-pops.jpg)
 
 
 

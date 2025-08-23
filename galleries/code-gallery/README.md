@@ -1,6 +1,6 @@
 # Code Gallery
 
-This gallery contains all the code blocks from the book. They are replicated here into a single location so that you can browse through them more easily.
+This gallery contains all the code blocks from the book. They are replicated here into a single location so that you can browse through them more easily. Note that the first few chapters don't have any code and thus do not appear here.
 
 ## Chapter 5: Running on Rust
 
@@ -73,7 +73,7 @@ umami_db:
     # ...
     volumes:
       - umami-volume:/var/lib/postgresql/data
-      
+
 volumes:
   umami-volume:
     name: umami-volume
@@ -124,7 +124,7 @@ services:
     ports:
       - 3001:3001
     restart: unless-stopped
-    
+
 volumes:
   kuma-volume:
     external: true
@@ -232,6 +232,13 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
 <div style="font-size: .7em; color: #555; text-align: center; margin-bottom: 40px;">Listing 07-10 (Docker)</div>
 
 
+```bash
+# Basic tail command, show prior 100 and follow new entries.
+tail -n 100 -f /logs/app.log
+```
+<div style="font-size: .7em; color: #555; text-align: center; margin-bottom: 40px;">Listing 07-11 (Linux Shell)</div>
+
+
 ```yaml
 # Docker Compose config to make logs persistent on host and "tailable."
 
@@ -243,15 +250,15 @@ services:
       # Env variable TALKPYTHON_LOGS maps to a local folder.
       - "${TALKPYTHON_LOGS}:/logs"
 ```
-<div style="font-size: .7em; color: #555; text-align: center; margin-bottom: 40px;">Listing 07-11 (Docker Compose)</div>
+<div style="font-size: .7em; color: #555; text-align: center; margin-bottom: 40px;">Listing 07-12 (Docker Compose)</div>
 
 
 ```bash
-# Command to tail the log and follow it for Talk Python's app server.
+# Tail the log and follow it for Talk Python's app server.
 
 tail -n 500 -f /cluster/logs/talkpython/request-log.log
 ```
-<div style="font-size: .7em; color: #555; text-align: center; margin-bottom: 40px;">Listing 07-12 (Linux Shell)</div>
+<div style="font-size: .7em; color: #555; text-align: center; margin-bottom: 40px;">Listing 07-13 (Linux Shell)</div>
 
 
 --------------------------------------------------------------------------------
@@ -303,10 +310,7 @@ RUN apt update
 RUN apt upgrade -y
 
 # Magically install Python
-# We'll talk about how to do this well in a moment
-# Or just use the Python official image if you rather
-# Though that is unnecessary these days IMO.
-
+# We'll talk about how to do this next.
 
 # ############ FOCUS HERE ##############
 RUN mkdir /app
@@ -317,7 +321,6 @@ RUN python -m venv /app/venv
 RUN /app/venv/bin/pip install -r requirements.txt
 # ######### UNTIL HERE #################
 
-
 ENTRYPOINT [ ... your startup command here ... ]
 ```
 <div style="font-size: .7em; color: #555; text-align: center; margin-bottom: 40px;">Listing 08-03 (Docker)</div>
@@ -325,11 +328,10 @@ ENTRYPOINT [ ... your startup command here ... ]
 
 ```dockerfile
 # Splitting the requirements file copy and the source files copy.
-
-# ############ FOCUS HERE ##############
 ...
 
-# Break out the copy of the requirements file and 
+# ############ FOCUS HERE ##############
+# Break out the copying of the requirements file and 
 # the install of the dependencies:
 COPY ./src/requirements.txt /app
 RUN python -m venv /app/venv
@@ -344,10 +346,9 @@ COPY ./src/ /app
 
 ```dockerfile
 # Cache the venv by moving it before copied files.
-
-# ############ FOCUS HERE ##############
 ...
 
+# ############ FOCUS HERE ##############
 # Move this ahead of any of our file changes.
 RUN python -m venv /app/venv
 
@@ -377,7 +378,7 @@ ENV PATH="/root/.local/bin/:$PATH"
 # Install uv
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh 
 
-# Create the venv and download the correct version of Python
+# Create the venv and download Python 3.13
 RUN uv venv --python 3.13 /app/venv
 
 COPY ./src/requirements.txt /app
@@ -410,8 +411,8 @@ RUN --mount=type=cache,target=/root/.cache uv pip install -r requirements.txt
 
 ```dockerfile
 # Going faster by ignoring files.
-
 # .dockerignore - located next to Dockerfile
+
 .git
 **/.git
 **/.github
@@ -438,7 +439,7 @@ server {
     listen 80;
     server_name talkpython.fm;
     charset utf-8;
-  
+
     location /static {
         gzip on;
         gzip_comp_level 6;
@@ -458,11 +459,9 @@ server {
         expires 365d;
     }
 
-    location /.well-known/acme-challenge/ { alias /var/www/certbot; }
+    location /.well-known/acme-challenge/ { root /var/www/certbot; }
 
-    location / {
-        try_files $uri @talk_python_app;
-    }
+    location / { try_files $uri @talk_python_app; }
 
     location @talk_python_app {
         include uwsgi_params;
@@ -519,6 +518,7 @@ networks:
 
 ```bash
 # Command to run certbot within Docker Compose config.
+
 docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d talkpython.fm
 ```
 <div style="font-size: .7em; color: #555; text-align: center; margin-bottom: 40px;">Listing 09-03 (Linux Shell)</div>
@@ -530,7 +530,7 @@ docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certb
 server {
     server_name talkpython.fm;
     charset utf-8;
-  
+
     # Add this section to listen on HTTPS port, enable HTTP2, and use the certs.
     listen 443 ssl;
     http2 on;
@@ -538,7 +538,7 @@ server {
     ssl_certificate_key /etc/letsencrypt/live/talkpython.fm/privkey.pem;
     include /etc/letsencrypt/options-ssl-NGINX.conf;
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
-  
+
     location /static {
         gzip on;
         gzip_comp_level 6;
@@ -558,7 +558,7 @@ server {
         expires 365d;
     }
 
-    location /.well-known/acme-challenge/ { alias /var/www/certbot; }
+    location /.well-known/acme-challenge/ { root /var/www/certbot; }
 
     location / {
         try_files $uri @talk_python_app;
@@ -621,6 +621,7 @@ The following certificates are not due for renewal yet:
 
 ```html
 <!-- CSS URL using CDN, cdn-podcast.talkpython.fm domain. -->
+
 https://cdn-podcast.talkpython.fm/static/css/site.css?cache_id=9b9f84
 ```
 <div style="font-size: .7em; color: #555; text-align: center; margin-bottom: 40px;">Listing 10-01 (HTML)</div>
@@ -628,6 +629,7 @@ https://cdn-podcast.talkpython.fm/static/css/site.css?cache_id=9b9f84
 
 ```html
 <!-- CSS URL served from our server directly. -->
+
 /static/css/site.css?cache_id=9b9f84
 ```
 <div style="font-size: .7em; color: #555; text-align: center; margin-bottom: 40px;">Listing 10-02 (HTML)</div>
@@ -635,6 +637,7 @@ https://cdn-podcast.talkpython.fm/static/css/site.css?cache_id=9b9f84
 
 ```html
 <!-- Audio file using large file download CDN. -->
+
 https://download-cdn.talkpython.fm/podcasts/talkpython/487-building-rust-extensions-for-python.mp3
 ```
 <div style="font-size: .7em; color: #555; text-align: center; margin-bottom: 40px;">Listing 10-03 (HTML)</div>
@@ -704,6 +707,8 @@ Host pyprod-host
 
 
 ```bash
+# Install pending updates on your brand new server.
+
 $ apt update
 $ apt upgrade # Can pass -y to avoid prompting
 $ reboot
@@ -735,7 +740,7 @@ apt install git -y
 apt install tree -y
 
 # Logging into github over and over is a hassle.
-# This will remember it until you reboot or times out.
+# This will remember it until you reboot or it times out.
 git config --global credential.helper cache
 git config --global credential.helper 'cache --timeout=720000'
 
@@ -751,7 +756,7 @@ uv tool install pls
 # Typing long commands is a hassle, create aliases to make
 # them very simple (glances won't run until Docker is setup).
 
-# Add the following lines to your ~/.zshrc file:
+# Add the following lines to your ~/.zshrc file at the end:
 alias http='docker run -it --rm --net=host clue/httpie'
 alias glances='docker run --rm --name glances -v /var/run/docker.sock:/var/run/docker.sock:ro -v /run/user/1000/podman/podman.sock:/run/user/1000/podman/podman.sock:ro --pid host --network host -it docker.io/nicolargo/glances'
 alias deploy="/cluster-src/book/ch11-example-setup/scripts/deploy.sh"
@@ -787,18 +792,6 @@ sudo apt-get update
 
 # To install the latest version of Docker
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
-
-# Optional: Change Docker data file to mounted
-# volume if wanted, this will allow you to mount
-# a separate volume much bigger than your hard 
-# drive and keep the docker working volumes 
-# and images there. This is especially useful 
-# if you have very large DB files in a persistent 
-# Docker volume. See 
-# https://stackoverflow.com/questions/36014554/how-to-change-the-default-location-for-docker-create-volume-command
-# Before you run anything related to Docker, 
-# be sure to change the docker working data to
-# the mounted volume if you intend to do that.
 ```
 <div style="font-size: .7em; color: #555; text-align: center; margin-bottom: 40px;">Listing 11-07 (Linux Shell)</div>
 
@@ -874,7 +867,9 @@ RUN apt-get install -y gcc
 RUN apt-get install -y clang
 
 # Install Oh My ZSH for a nicer shell experience.
-# Used for docker exec -it NAME zsh, and docker run -it NAME zsh
+# Used for commands: 
+# docker exec -it CONTAINER_NAME zsh
+# docker run -it CONTAINER_NAME zsh
 RUN apt-get install -y zsh
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.2.1/zsh-in-docker.sh)" -- \
     -t robbyrussell \
@@ -892,8 +887,8 @@ ENV PATH=/venv/bin:$PATH
 ENV PATH=/root/.cargo/bin:$PATH
 ENV PATH="/root/.local/bin/:$PATH"
 
-# Our app will be based in this directory.
-# Regardless of its actual file location on our build machine.
+# Our app will be based in this directory
+# regardless of its actual file location on our build machine.
 RUN mkdir /apps
 
 # Install Rust/Cargo for local builds of Rust-based Python packages
@@ -905,6 +900,7 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 # Set up a virtual env to use for app destined for derived containers.
 # This installs Python 3.13 in addition to creating the virtual environment.
 # Incredibly, it only takes two seconds. 🚀 uv!
+# Update Python 3.13 to the latest Python version as that evolves over time.
 RUN uv venv --python 3.13 /venv
 
 # Activate the venv if we login via docker run/exec:
@@ -916,8 +912,6 @@ RUN --mount=type=cache,target=/root/.cache uv pip install httpie pls
 # Verify that Python is installed and works.
 # This will fail the build if something has gone wrong.
 RUN /venv/bin/python --version
-
-RUN echo "We're good."
 ```
 <div style="font-size: .7em; color: #555; text-align: center; margin-bottom: 40px;">Listing 11-14 (Docker)</div>
 
@@ -972,8 +966,8 @@ RUN --mount=type=cache,target=/root/.cache uv pip install -r requirements.txt
 # 2. Copy the app source code into the containers' /app directory.
 COPY src/htmx-python-course/code/ch7_infinite_scroll/ch7_final_video_collector /app
 
-# Make sure we have the latest app server (ganian) if the bases are cached.
-# This WILL exist fom python-example-base but it could be out of date.
+# Make sure we have the latest app server (Granián) if the bases are cached.
+# This WILL exist fom python-example-base but it may be out of date.
 RUN --mount=type=cache,target=/root/.cache uv pip install --upgrade "granian[pname]"
 
 # Set the command to run when the container starts (Granián).
@@ -1005,15 +999,15 @@ services:
   video-collector:
     # Name the image in the docker images so it's not something random.
     image: video-collector
-    
+
     # Name the comtainer so it's clear when it's running.
     container_name: video-collector
-    
+
     platform: "linux/x86_64"
-    
+
     # Restart it if it crashes.
     restart: unless-stopped
-    
+
     # Control which ports are open on the container and
     # what "network" they are available on.
     # "127.0.0.1:15000" is for the host and means that
@@ -1022,22 +1016,22 @@ services:
     # The value for 15000 needs to line up with the granian command.
     ports:
       - "127.0.0.1:15000:15000"
-      
+
     # Map a logfile directory (from .env) to container's /log dir.
     volumes:
       - "${APP_LOGS}:/logs"
-      
+
     # Specify how to build this image, here it's via:
     # ./video-collector-docker/Dockerfile
     build: video-collector-docker
-    
+
     # Limit how much of our server is given over to this container.
     # Doesn't matter in this case, but it's an example for larger clusters.
     deploy:
       resources:
         limits:
           memory: 1G
-    
+
     # Specify which external Docker networks to join. 
     # Setting a unique and fixed IP address allows NGINX
     # to find it more reliably (a shortcoming of NGINX).
@@ -1141,7 +1135,7 @@ reboot
 
 # Wait 10 seconds for the server to start.
 # Reconnect
-ssh pyprod-host
+ssh root@pyprod-host
 
 # Use httpie to call the app, should get 200 OK.
 http -h localhost:15000
@@ -1161,20 +1155,20 @@ services:
   nginx:
     # We run the latest base image.
     image: nginx:latest
-    
+
     # Specify a container name so it's easy to see in management tools.
     container_name: nginx
-    
+
     # If the container crashes for some reason, restart it.
     restart: unless-stopped
-    
+
     # We need to map both port 80 and 443 
     # to the top level network on the host.
     # Notice there is no 127.0.0.1 like with our Flask app.
     ports:
       - "80:80"
       - "443:443"
-     
+
     # There's a lot of configuration and logging 
     # that needs to happen for NGINX. This section
     # a bunch of directories that will go into greater 
@@ -1196,13 +1190,13 @@ services:
       retries: 5
       start_period: 10s
       timeout: 1s
-      
+
     # we can limit the amount of server allowed by nginx as well
     deploy:
       resources:
         limits:
           memory: 1G
-          
+
     # NGINX and the other containers need to share 
     # the same network so that HTTP requests can 
     # be passed through to the Python app.
@@ -1306,7 +1300,7 @@ server {
     listen 80;
     charset utf-8;
     client_max_body_size 1M;
-  
+
     # Don't return the NGINX Version in case there's a vulnerability 
     # that can be searched for.
     server_tokens off;
@@ -1369,7 +1363,7 @@ server {
         # docker-compose configuration. The IP address 
         # is for the internal Docker network that we created.
         proxy_pass http://174.44.0.100:15000;
-    
+
         include uwsgi_params;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -1437,7 +1431,7 @@ server {
     listen 80;
     # Redirect a bunch of other domains I've used back to this site.
     server_name www.mkennedy.codes mkennedy.tech www.mkennedy.tech michaelckennedy.net www.michaelckennedy.net michaelckennedy.com www.michaelckennedy.com;
-    
+
     # Here is the redirect statement
     return 301 https://mkennedy.codes$request_uri;
     server_tokens off;
@@ -1450,19 +1444,18 @@ server {
     charset utf-8;
     server_tokens off;
 
-		# THESE TWO ARE THE CRITICAL BIT
+		# THESE TWO ARE THE CRITICAL BITS
 		
 		# The root of this site is just a location where we
 		# git cloned the files generated by Hugo to ./prod
     root /apps/static/mkennedy.codes/mkennedy-codes/prod;
-    
+
     # Tell NGINX that if it sees a path that is a folder
     # not a file, use index.html as the content.
     # e.g with the URL:
     # https://mkennedy.codes/posts/blue-skies-ahead-follow-me-there/
     # render the file:
-    # /apps/static/mkennedy.codes/mkennedy-codes/{LINEWRAP}
-    # prod/posts/blue-skies-ahead-follow-me-there/index.html
+    # /apps/static/mkennedy.codes/mkennedy-codes/prod/posts/blue-skies-ahead-follow-me-there/index.html
     index index.html;
 
     # Use alias for the ACME/Let's Encrypt challenge directory
@@ -1517,13 +1510,13 @@ server {
     listen 80;
     server_name talkpython.fm;
     server_tokens off;
-   
+
     # ...
-  
+
     # Map a subroute to /blog, see next two blocks
     # talkpython.fm/blog location (no caching for HTML content)
     location /blog {
-      alias /apps/static/talkpython/talkpython-blog/prod/;
+      alias /apps/static/talkpython/talk-python-blog/prod/;
       index index.html;
 
       # Disable caching for the main content
@@ -1535,7 +1528,7 @@ server {
   location ~* /blog/(.+\.(css|js|jpg|jpeg|png|webp|gif|svg|ico|woff|woff2|ttf|otf))$ {
      # Similar to the prior example...
   }
-  
+
   # Critical that this portion comes after /blog 
   # since it's effectively catching all URLs.
   location / {
@@ -1599,7 +1592,7 @@ import quart
 def register_blueprints(app: quart.Quart):
     # Needs to appear first.
     app.register_blueprint(episodes_blueprint)
-    
+
     app.register_blueprint(home_blueprint)
     app.register_blueprint(friends_blueprint)
     app.register_blueprint(advertiser_blueprint)
@@ -1612,7 +1605,7 @@ def register_blueprints(app: quart.Quart):
     app.register_blueprint(error_blueprint)
     app.register_blueprint(hackers_blueprint)
 
-    # Redirector needs to be last in line.
+    # URL shortener needs to be last in line.
     app.register_blueprint(redirector_blueprint)
 ```
 <div style="font-size: .7em; color: #555; text-align: center; margin-bottom: 40px;">Listing 13-01 (Python)</div>
@@ -1627,7 +1620,7 @@ async def item(item_id: int):
     item = service.get_item_by_id(item_id)
     if not item:
         return chameleon_flask.not_found()
-    
+
     return item.dict()
 ```
 <div style="font-size: .7em; color: #555; text-align: center; margin-bottom: 40px;">Listing 13-02 (Python)</div>
@@ -1638,7 +1631,7 @@ async def item(item_id: int):
 
 @episodes_blueprint.get('/<int:show_id>')
 async def show_by_number(show_id: int):
-    vm = ShowEpisodeViewMode(show_id, -1)
+    vm = ShowEpisodeViewMode(show_id)
     await vm.load_async() # Now needed for await
     if vm.episode is None:
         quart.abort(404)
