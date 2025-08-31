@@ -1,4 +1,5 @@
-# Talk Python in Production – Code & Resources Companion Repository
+# Talk Python in Production Book 
+## Code & Resources Companion Repository
 
 [![](./images/devops-book-web-hero.webp)](https://talkpython.fm/books/python-in-production)
 
