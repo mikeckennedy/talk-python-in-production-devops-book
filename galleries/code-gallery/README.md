@@ -34,7 +34,7 @@ granian talkpython.quart_app:app \
        --interface asgi \ 
        --no-ws 
        --workers 3 \
-       --runtime-mode st \
+       -runtime-mode st \
        --loop uvloop \
        --workers-lifetime 43200 --respawn-interval 30 \
        --process-name "granian-talkpython" \
@@ -55,7 +55,7 @@ ENTRYPOINT [  \
   "--interface","asgi", \
   "--no-ws", \
   "--workers","3", \
-  "--runtime-mode", "st", \
+  "--threading-mode", "workers", \
   "--loop","uvloop", \
   "--log-level","info",\
   "--log", \
@@ -607,9 +607,9 @@ docker compose run --rm certbot renew --webroot --webroot-path /var/www/certbot/
 
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 Processing /etc/letsencrypt/renewal/talkpython.fm.conf
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 Certificate not yet due for renewal
 
 The following certificates are not due for renewal yet:

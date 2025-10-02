@@ -25,7 +25,7 @@ You can use this gallery to quickly find and visit any external resource mention
 
 * **IIS** - [https://learn.microsoft.com/en-us/iis/get-started/introduction-to-iis/iis-web-server-overview](https://learn.microsoft.com/en-us/iis/get-started/introduction-to-iis/iis-web-server-overview)
 * **DigitalOcean** - [https://m.do.co/c/88e9531cb6aa](https://m.do.co/c/88e9531cb6aa)
-* **You're not Google, you're not Facebook, and you're Netflix** - [https://programmerfriend.com/not-google/](https://programmerfriend.com/not-google/)
+* **You're not Google, you're not Facebook, and you're not Netflix** - [https://programmerfriend.com/not-google/](https://programmerfriend.com/not-google/)
 * **Bringing Python to the Masses with Hosting and DevOps at PythonAnywhere** - [https://talkpython.fm/episodes/show/10/bringing-python-to-the-masses-with-hosting-and-devops-at-pythonanywhere](https://talkpython.fm/episodes/show/10/bringing-python-to-the-masses-with-hosting-and-devops-at-pythonanywhere)
 * **Talk Python** - [https://talkpython.fm](https://talkpython.fm)
 * **PythonAnywhere** - [https://www.pythonanywhere.com](https://www.pythonanywhere.com)
