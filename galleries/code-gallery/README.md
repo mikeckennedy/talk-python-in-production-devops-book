@@ -34,7 +34,7 @@ granian talkpython.quart_app:app \
        --interface asgi \ 
        --no-ws 
        --workers 3 \
-       -runtime-mode st \
+       --runtime-mode st \
        --loop uvloop \
        --workers-lifetime 43200 --respawn-interval 30 \
        --process-name "granian-talkpython" \
