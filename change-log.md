@@ -9,7 +9,7 @@ and this project uses [Calendar Versioning](https://calver.org/) with the format
 
 ...
 
-## [2025.10.11] - 2025-10-02
+## [2025.10.12] - 2025-10-03
 
 ### Added
 - First official release of the DevOps book
