@@ -1,4 +1,4 @@
-FROM pythonbase:latest
+FROM pythonbase-faster:latest
 
 RUN mkdir /app
 
@@ -24,7 +24,8 @@ ENTRYPOINT [  \
     "--interface","wsgi", \
     "--no-ws", \
     "--workers","2", \
-    "--threads","4", \
+    "--runtime-mode", "mt", \
+    "--runtime-threads", "4",\
     "--loop","uvloop", \
     "--log-level","info",\
     "--log", \

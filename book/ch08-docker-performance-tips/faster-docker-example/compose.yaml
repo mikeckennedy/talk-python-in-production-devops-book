@@ -1,4 +1,18 @@
+# Build with the command:
+# docker compose build linuxbase-faster && docker compose build pythonbase-faster && docker compose build uv-docker-app
+
 services:
+  linuxbase-faster:
+    build: ./linuxbase
+    container_name: linuxbase-faster
+    image: linuxbase-faster
+
+  pythonbase-faster:
+    build: ./pythonbase
+    container_name: pythonbase-faster
+    image: pythonbase-faster
+    depends_on:
+      - linuxbase-faster
 
   uv-docker-app:
     build: ./webapp
@@ -8,16 +22,3 @@ services:
       - "127.0.0.1:8080:8080"
     depends_on:
       - pythonbase-faster
-
-  pythonbase-faster:
-    build: ./pythonbase
-    container_name: pythonbase-faster
-    image: pythonbase-faster
-    depends_on:
-      - linuxbase-faster
-
-  linuxbase-faster:
-    build: ./linuxbase
-    container_name: linuxbase-faster
-    image: linuxbase-faster
-

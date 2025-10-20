@@ -1,4 +1,4 @@
-FROM linuxbase:latest
+FROM linuxbase-faster:latest
 
 RUN mkdir /apps
 
