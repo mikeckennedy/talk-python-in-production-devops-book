@@ -376,7 +376,7 @@ FROM ubuntu:latest
 
 # ...
 
-# Set some paths making it eaiser to run uv and python
+# Set some paths making it easier to run uv and python
 ENV PATH=/venv/bin:$PATH
 ENV PATH="/root/.local/bin/:$PATH"
 
@@ -483,7 +483,7 @@ server {
 ### Code block 09-02 - Docker Compose
 
 ```yaml
-# Docker Compose file for connecting NGINX and CertBox.
+# Docker Compose file for connecting NGINX and CertBot.
 
 services:
 
@@ -815,7 +815,7 @@ docker network create -d bridge cluster-network --subnet=174.44.0.0/16
 ```bash
 # Example command to create an external Docker volume (disk).
 
-# Do NOT run this command, it's just for your refernce.
+# Do NOT run this command, it's just for your reference.
 # We are not using external volumes in our example.
 docker volume create NAME
 ```
@@ -921,7 +921,8 @@ RUN /venv/bin/python --version
 # Docker Compose command to build the foundational Docker images.
 
 cd /cluster-src/book/ch11-example-setup/containers/base-images/
-docker compose build
+docker compose build linux-example-base
+docker compose build python-example-base
 ```
 
 ### Code block 11-16 - Docker
@@ -936,7 +937,6 @@ services:
     build: ./pythonbase
     container_name: python-example-base
     image: python-example-base
-    platform: "linux/x86_64"
     depends_on:
       - linux-example-base
 
@@ -944,7 +944,6 @@ services:
     build: ./linuxbase
     container_name: linux-example-base
     image: linux-example-base
-    platform: "linux/x86_64"
 ```
 
 ### Code block 11-17 - Docker
@@ -980,7 +979,8 @@ ENTRYPOINT [  \
     "--interface","wsgi", \
     "--no-ws", \
     "--workers","2", \
-    "--threads","4", \
+    "--runtime-mode", "mt", \
+    "--runtime-threads", "4",\
     "--loop","uvloop", \
     "--log-level","info", \
     "--log", \
@@ -1001,10 +1001,8 @@ services:
     # Name the image in the docker images so it's not something random.
     image: video-collector
 
-    # Name the comtainer so it's clear when it's running.
+    # Name the container so it's clear when it's running.
     container_name: video-collector
-
-    platform: "linux/x86_64"
 
     # Restart it if it crashes.
     restart: unless-stopped
@@ -1212,7 +1210,6 @@ services:
   certbot:
       image: certbot/certbot:latest
       container_name: certbot
-      platform: "linux/x86_64"
       volumes:
         - "${CERTBOT_WWW}:/var/www/certbot/"
         - "${NGINX_LETS_ENCRYPT_ETC}:/etc/letsencrypt/:rw"
