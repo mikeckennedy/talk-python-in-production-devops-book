@@ -24,6 +24,7 @@ ENTRYPOINT [  \
     "--interface","wsgi", \
     "--no-ws", \
     "--workers","2", \
+    "--backpressure", "40", \
     "--runtime-mode", "mt", \
     "--runtime-threads", "4",\
     "--loop","uvloop", \
