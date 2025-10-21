@@ -3,7 +3,6 @@ services:
   video-collector:
     image: video-collector
     container_name: video-collector
-    platform: "linux/x86_64"
     restart: unless-stopped
     ports:
       - "127.0.0.1:15000:15000"

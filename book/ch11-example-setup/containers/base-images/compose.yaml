@@ -4,7 +4,6 @@ services:
     build: ./pythonbase
     container_name: python-example-base
     image: python-example-base
-    platform: "linux/x86_64"
     depends_on:
       - linux-example-base
 
@@ -12,4 +11,3 @@ services:
     build: ./linuxbase
     container_name: linux-example-base
     image: linux-example-base
-    platform: "linux/x86_64"
