@@ -9,6 +9,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 RUN apt-get upgrade -y
 
+RUN echo "Heads up - this section takes a little while but only builds once on the machine until Linux updates."
+
 RUN apt-get -y install curl
 RUN apt-get -y install wget
 RUN apt-get -y install locales
