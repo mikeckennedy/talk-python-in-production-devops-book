@@ -3,11 +3,20 @@
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project uses [Calendar Versioning](https://calver.org/) with the format YYYY.MM.DD.
+and this project uses [~ Calendar Versioning](https://calver.org/) with the format YYYY.MM.BUILD.
 
 ## [Unreleased]
 
-...
+- 
+
+## [2025.10.35] - 2025-10-21
+
+### Fixed
+- Error preventing the sample Video Collector app from running on Python 3.14
+- Updated granian CLI syntax from deprecated `--threads` to `--runtime-threads` (cause run errors in Docker)
+
+### Changed
+- Removed platform x86 dependency (doesn't seem to be required any longer)
 
 ## [2025.10.12] - 2025-10-03
 
