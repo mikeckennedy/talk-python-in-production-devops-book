@@ -20,8 +20,9 @@ ENTRYPOINT [  \
     "--interface","wsgi", \
     "--no-ws", \
     "--workers","2", \
-    "--threads","4", \
-    "--loop","uvloop", \
+    "--backpressure", "40", \
+    "--runtime-mode", "mt", \
+    "--runtime-threads", "4",\
     "--log-level","info",\
     "--log", \
     "--process-name", \

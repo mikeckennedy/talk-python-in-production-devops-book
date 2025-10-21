@@ -1,4 +1,3 @@
-#! /usr/bin/bash
 echo "Building containers"
 
 # ################ Set up environment for shared vars #####################
@@ -16,7 +15,8 @@ REPO_PATH=$(realpath "$RELATIVE_PATH")
 
 echo "Building base images"
 cd ${REPO_PATH}/book/ch11-example-setup/containers/base-images
-docker compose build
+docker compose build linux-example-base
+docker compose build python-example-base
 echo "base images done"
 
 echo "Build core app"
@@ -32,7 +32,7 @@ echo "nginx server done"
 
 echo "Restart containers (if needed)"
 cd ${REPO_PATH}/book/ch11-example-setup/containers/core-app
-docker compose up -d
+docker compose up -d --remove-orphans
 cd ${REPO_PATH}/book/ch11-example-setup/containers/web-servers
-docker compose up -d nginx
+docker compose up -d nginx --remove-orphans
 echo "restarts done."

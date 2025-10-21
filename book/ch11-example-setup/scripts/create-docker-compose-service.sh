@@ -1,4 +1,3 @@
-#!/bin/bash
 # Create a systemd service that autostarts & manages a docker-compose instance in the current directory
 # by Uli Köhler - https://techoverflow.net
 # Licensed as CC0 1.0 Universal
