@@ -146,7 +146,7 @@ cp -r /cluster-src/book/ch11-example-setup/containers/core-app/video-collector-d
 ############################################################
 # Run docker compose cluster as systemd service
 cd /cluster-src/book/ch11-example-setup/containers/core-app
-curl -fsSL https://techoverflow.net/scripts/create-docker-compose-service.sh | sudo bash /dev/stdin
+bash /cluster-src/book/ch11-example-setup/scripts/create-docker-compose-service.sh
 
 cd /cluster-src/book/ch11-example-setup/containers/web-servers
-curl -fsSL https://techoverflow.net/scripts/create-docker-compose-service.sh | sudo bash /dev/stdin
+bash /cluster-src/book/ch11-example-setup/scripts/create-docker-compose-service.sh
