@@ -1,6 +1,9 @@
 # Build with the command:
+# 
 # docker compose build linuxbase-faster && docker compose build pythonbase-faster && docker compose build uv-docker-app
-
+#
+# See the README.md file for details and background info.
+#
 services:
   linuxbase-faster:
     build: ./linuxbase
@@ -11,8 +14,6 @@ services:
     build: ./pythonbase
     container_name: pythonbase-faster
     image: pythonbase-faster
-    depends_on:
-      - linuxbase-faster
 
   uv-docker-app:
     build: ./webapp
@@ -20,5 +21,3 @@ services:
     image: uv-docker-app
     ports:
       - "127.0.0.1:8080:8080"
-    depends_on:
-      - pythonbase-faster
