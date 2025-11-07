@@ -186,7 +186,7 @@ uv tool install dockerclustermon
 ### Code block 07-05 - Linux Shell
 
 ```bash
-# Installing Docker Cluster Monitor via uv.
+# Installing Docker Cluster Monitor via pipx.
 
 pipx install dockerclustermon
 ```
