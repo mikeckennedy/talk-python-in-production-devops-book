@@ -967,7 +967,7 @@ RUN --mount=type=cache,target=/root/.cache uv pip install -r requirements.txt
 COPY src/htmx-python-course/code/ch7_infinite_scroll/ch7_final_video_collector /app
 
 # Make sure we have the latest app server (Granián) if the bases are cached.
-# This WILL exist fom python-example-base but it may be out of date.
+# This WILL exist from python-example-base but it may be out of date.
 RUN --mount=type=cache,target=/root/.cache uv pip install --upgrade "granian[pname]"
 
 # Set the command to run when the container starts (Granián).
