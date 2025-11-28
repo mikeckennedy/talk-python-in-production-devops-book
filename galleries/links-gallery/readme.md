@@ -64,7 +64,7 @@ You can use this gallery to quickly find and visit any external resource mention
 * **github.com/umami-software/umami** - [https://github.com/umami-software/umami](https://github.com/umami-software/umami)
 * **Hoarder.app** - [https://hoarder.app/](https://hoarder.app/)
 * **Such as Austria** - [https://noyb.eu/en/austrian-dsb-eu-us-data-transfers-google-analytics-illegal](https://noyb.eu/en/austrian-dsb-eu-us-data-transfers-google-analytics-illegal)
-* **plausible.io** - [https://plausible.io/](https://plausible.io/)
+* **Plausible.io** - [https://plausible.io/](https://plausible.io/)
 * **pypi.org/project/umami-analytics** - [https://pypi.org/project/umami-analytics/](https://pypi.org/project/umami-analytics/)
 * **Uptime Kuma** - [https://uptime.kuma.pet/](https://uptime.kuma.pet/)
 * **uptimekuma.talkpython.fm/status/talk-python** - [https://uptimekuma.talkpython.fm/status/talk-python](https://uptimekuma.talkpython.fm/status/talk-python)
