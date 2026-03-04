@@ -186,20 +186,12 @@ uv tool install dockerclustermon
 ### Code block 07-05 - Linux Shell
 
 ```bash
-# Installing Docker Cluster Monitor via uv.
-
-pipx install dockerclustermon
-```
-
-### Code block 07-06 - Linux Shell
-
-```bash
 # Monitor Docker cluster at server SERVERNAME
 
 dockerstatus SERVERNAME
 ```
 
-### Code block 07-07 - Linux Shell
+### Code block 07-06 - Linux Shell
 
 ```bash
 # Log into NGINX's running Docker container (starting Bash).
@@ -207,7 +199,7 @@ dockerstatus SERVERNAME
 docker exec -it nginx bash
 ```
 
-### Code block 07-08 - Linux Shell
+### Code block 07-07 - Linux Shell
 
 ```bash
 # Log into running app server in Docker container (starting OhMyZSH).
@@ -216,7 +208,7 @@ docker exec -it talkpython zsh
 (venv) ➜  /app
 ```
 
-### Code block 07-09 - Linux Shell
+### Code block 07-08 - Linux Shell
 
 ```bash
 # .zshrc file: Set up OhMyZSH and 
@@ -230,7 +222,7 @@ source $ZSH/oh-my-zsh.sh
 source /venv/bin/activate
 ```
 
-### Code block 07-10 - Docker
+### Code block 07-09 - Docker
 
 ```dockerfile
 # Docker command to install ZSH and set up OhMyZSH.
@@ -239,14 +231,14 @@ source /venv/bin/activate
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.2.0/zsh-in-docker.sh)" -- -t robbyrussell
 ```
 
-### Code block 07-11 - Linux Shell
+### Code block 07-10 - Linux Shell
 
 ```bash
 # Basic tail command, show prior 100 and follow new entries.
 tail -n 100 -f /logs/app.log
 ```
 
-### Code block 07-12 - Docker Compose
+### Code block 07-11 - Docker Compose
 
 ```yaml
 # Docker Compose config to make logs persistent on host and "tailable."
@@ -260,7 +252,7 @@ services:
       - "${TALKPYTHON_LOGS}:/logs"
 ```
 
-### Code block 07-13 - Linux Shell
+### Code block 07-12 - Linux Shell
 
 ```bash
 # Tail the log and follow it for Talk Python's app server.
