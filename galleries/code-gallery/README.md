@@ -719,7 +719,7 @@ apt-get upgrade -y
 
 # Install ZSH and ohmyzsh
 apt-get install zsh -y
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Btop is an amazing tool for monitoring server behaviors
 apt install btop -y
