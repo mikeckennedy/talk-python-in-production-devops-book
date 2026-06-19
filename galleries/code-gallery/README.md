@@ -1107,7 +1107,7 @@ bash /cluster-src/book/ch11-example-setup/scripts/create-docker-compose-service.
 ### Code block 11-28 - Linux Shell
 
 ```bash
-Creating systemd service... /etc/systemd/system/core-app.service
+Creating systemd service at /etc/systemd/system/core-app.service
 Enabling & starting core-app
 ```
 
@@ -1274,8 +1274,8 @@ bash /cluster-src/book/ch11-example-setup/scripts/create-docker-compose-service.
 
 ```bash
 # Output from systemd daemon NGINX script.
-Creating systemd service... /etc/systemd/system/web-servers.service
-Enabling & starting core-app
+Creating systemd service at /etc/systemd/system/web-servers.service
+Enabling & starting web-servers
 ```
 
 ### Code block 11-38 - NGINX

@@ -8,9 +8,13 @@ and this project uses [~ Calendar Versioning](https://calver.org/) with the form
 
 ## [Unreleased]
 
+
+## [2026.06.71] - 2026-06-19
+
 ### Fixed
 - Fixed bug in `hugopublish` shell alias for static site deployment
-- Files: `assets/docs/files-per-chapter/13-static-sites-and-hugo.md`
+- Corrected the oh-my-zsh install command in the example server setup (was pointing at the Homebrew installer; now uses `ohmyzsh/ohmyzsh` on `raw.githubusercontent.com`)
+- Corrected the systemd service example output for NGINX (`web-servers`) which incorrectly read `Enabling & starting core-app`; also aligned both core-app and web-servers blocks with the script's actual `Creating systemd service at ...` wording
 
 
 ## [2025.12.03] - 2025-12-03
